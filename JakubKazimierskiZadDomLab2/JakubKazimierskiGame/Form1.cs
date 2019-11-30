@@ -51,7 +51,9 @@ namespace JakubKazimierskiGame
 
         public Form1()
         {
-            InitializeComponent();
+            
+                InitializeComponent();
+            
         }
 
         #region Bacground Methods
@@ -591,6 +593,60 @@ namespace JakubKazimierskiGame
         private void button1_Click(object sender, EventArgs e)
         {
             Environment.Exit(1);
+        }
+        #endregion
+
+        #region BackroundModeMethods
+        
+        /// <summary>
+        /// Method to enable easy mode background and game itself
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EasyModeRadioButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("EasyMode");
+            EasyModeRadioButton.Enabled = false;
+            MediumModeRadioButton.Enabled = false;
+            HardModeRadioButton.Enabled = false;
+            MoveBackground.Enabled = true;
+            MoveEnemiesTimer.Enabled = true;
+            EnemiesMunitionTimer.Enabled = true;
+        
+        }
+
+        /// <summary>
+        /// Method to enable medium mode background and game itself
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MediumModeRadioButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("MediumMode");
+            EasyModeRadioButton.Enabled = false;
+            MediumModeRadioButton.Enabled = false;
+            HardModeRadioButton.Enabled = false;
+            MoveBackground.Enabled = true;
+            MoveEnemiesTimer.Enabled = true;
+            EnemiesMunitionTimer.Enabled = true;
+
+        }
+
+        /// <summary>
+        /// Method to enable Hard mode background and game itself
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void HardModeRadioButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("HardMode");
+            EasyModeRadioButton.Enabled = false;
+            MediumModeRadioButton.Enabled = false;
+            HardModeRadioButton.Enabled = false;
+            MoveBackground.Enabled = true;
+            MoveEnemiesTimer.Enabled = true;
+            EnemiesMunitionTimer.Enabled = true;
+
         }
         #endregion
     }
