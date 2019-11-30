@@ -69,7 +69,7 @@ namespace JakubKazimierskiGame
         {
             #region creating variables object
             //assigmnet of values to variables
-            backgroundSpeed = 4;
+            
             playerSpeed = 4;
             MunitionSpeed = 20;
             enemiesSpeed = 4;
@@ -95,10 +95,10 @@ namespace JakubKazimierskiGame
 
             enemiesMunitions = new PictureBox[10];
 
-            ///For only now change of colors
-            string col = background.GetColorBackground();
+           
+            this.BackColor = Color.FromName(background.GetColorBackground());
+            backgroundSpeed = background.GetObstaclesBackground();
 
-            this.BackColor = Color.FromName(col);
             #endregion
 
             #region Rendering Images loops
@@ -490,6 +490,7 @@ namespace JakubKazimierskiGame
         private void GameOver(String str)
         {
             label1.Text = str;
+            label1.BackColor = Color.FromName(background.GetColorBackground());
             label1.Location = new Point(this.Width / 2 - 120, 150);
             label1.Visible = true;
             
@@ -617,7 +618,7 @@ namespace JakubKazimierskiGame
         private void EasyModeRadioButton_Click(object sender, EventArgs e)
         {
             Off_Radio_Buttons();
-            background = new DifficultyModeBackground("Black", 0);
+            background = new DifficultyModeBackground("Black", 4);
             MessageBox.Show("EasyMode");
             ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
             ReplayButton.Visible = true;
@@ -632,7 +633,7 @@ namespace JakubKazimierskiGame
         private void MediumModeRadioButton_Click(object sender, EventArgs e)
         {
             Off_Radio_Buttons();
-            background = new DifficultyModeBackground("DarkBlue", 4);
+            background = new DifficultyModeBackground("DarkBlue", 7);
             MessageBox.Show("MediumMode");
             ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
             ReplayButton.Visible = true;
@@ -646,9 +647,9 @@ namespace JakubKazimierskiGame
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void HardModeRadioButton_Click(object sender, EventArgs e)
-        {
+        {   
             Off_Radio_Buttons();
-            background = new DifficultyModeBackground("DarkGreen", 8);
+            background = new DifficultyModeBackground("MidnightBlue", 9);
             MessageBox.Show("HardMode");
             ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
             ReplayButton.Visible = true;
