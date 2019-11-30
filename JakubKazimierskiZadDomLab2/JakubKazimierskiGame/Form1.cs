@@ -478,7 +478,7 @@ namespace JakubKazimierskiGame
         #region Timers on/off Methods
 
         /// <summary>
-        /// Stop game means stopping each timer, and also display on screen text and buttons
+        /// Stop game means stopping each timer, and also display on screen text and buttons, after collision, also radio buttons are enabled
         /// </summary>
         /// <param name="str"></param>
         private void GameOver(String str)
@@ -494,6 +494,8 @@ namespace JakubKazimierskiGame
             EndButton.Visible = true;
             
             StopTimers();
+
+            ON_Radio_Buttons();
         }
 
         /// <summary>
@@ -572,18 +574,21 @@ namespace JakubKazimierskiGame
         #region Buttons methods
         
         /// <summary>
-        /// method responsible for using replay button, program didn't render proper name
+        /// method responsible for using replay button, program didn't render proper name, 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
+
+
             
-            this.Controls.Clear();
-            InitializeComponent();
-            Form1_Load(e, e);
-            StopTimers();
-            StartTimers();
+                this.Controls.Clear();
+                InitializeComponent();
+                Form1_Load(e, e);
+                StopTimers();
+                StartTimers();
+            Off_Radio_Buttons();
         }
         /// <summary>
         /// method responsible for using end button, program didn't render proper name
@@ -605,14 +610,11 @@ namespace JakubKazimierskiGame
         /// <param name="e"></param>
         private void EasyModeRadioButton_Click(object sender, EventArgs e)
         {
+            Off_Radio_Buttons();
             MessageBox.Show("EasyMode");
-            EasyModeRadioButton.Enabled = false;
-            MediumModeRadioButton.Enabled = false;
-            HardModeRadioButton.Enabled = false;
-            MoveBackground.Enabled = true;
-            MoveEnemiesTimer.Enabled = true;
-            EnemiesMunitionTimer.Enabled = true;
-        
+            ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
+            ReplayButton.Visible = true;
+
         }
 
         /// <summary>
@@ -622,13 +624,11 @@ namespace JakubKazimierskiGame
         /// <param name="e"></param>
         private void MediumModeRadioButton_Click(object sender, EventArgs e)
         {
+            Off_Radio_Buttons();
             MessageBox.Show("MediumMode");
-            EasyModeRadioButton.Enabled = false;
-            MediumModeRadioButton.Enabled = false;
-            HardModeRadioButton.Enabled = false;
-            MoveBackground.Enabled = true;
-            MoveEnemiesTimer.Enabled = true;
-            EnemiesMunitionTimer.Enabled = true;
+            ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
+            ReplayButton.Visible = true;
+
 
         }
 
@@ -639,13 +639,25 @@ namespace JakubKazimierskiGame
         /// <param name="e"></param>
         private void HardModeRadioButton_Click(object sender, EventArgs e)
         {
+            Off_Radio_Buttons();
             MessageBox.Show("HardMode");
+            ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
+            ReplayButton.Visible = true;
+
+        }
+
+        public void Off_Radio_Buttons()
+        {
             EasyModeRadioButton.Enabled = false;
             MediumModeRadioButton.Enabled = false;
             HardModeRadioButton.Enabled = false;
-            MoveBackground.Enabled = true;
-            MoveEnemiesTimer.Enabled = true;
-            EnemiesMunitionTimer.Enabled = true;
+
+        }
+        public void ON_Radio_Buttons()
+        {
+            EasyModeRadioButton.Enabled = true;
+            MediumModeRadioButton.Enabled = true;
+            HardModeRadioButton.Enabled = true;
 
         }
         #endregion
