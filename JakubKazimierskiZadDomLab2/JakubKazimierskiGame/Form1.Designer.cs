@@ -113,7 +113,7 @@
             this.ReplayButton.Name = "ReplayButton";
             this.ReplayButton.Size = new System.Drawing.Size(210, 43);
             this.ReplayButton.TabIndex = 2;
-            this.ReplayButton.Text = "Replay";
+            this.ReplayButton.Text = "Play";
             this.ReplayButton.UseVisualStyleBackColor = true;
             this.ReplayButton.Visible = false;
             this.ReplayButton.Click += new System.EventHandler(this.button2_Click);
@@ -224,6 +224,7 @@
             // 
             this.EasyModeRadioButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.EasyModeRadioButton.AllowDrop = true;
+            this.EasyModeRadioButton.AutoEllipsis = true;
             this.EasyModeRadioButton.AutoSize = true;
             this.EasyModeRadioButton.Location = new System.Drawing.Point(17, 299);
             this.EasyModeRadioButton.Name = "EasyModeRadioButton";
@@ -238,6 +239,7 @@
             // 
             this.MediumModeRadioButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.MediumModeRadioButton.AllowDrop = true;
+            this.MediumModeRadioButton.AutoCheck = false;
             this.MediumModeRadioButton.AutoSize = true;
             this.MediumModeRadioButton.Location = new System.Drawing.Point(17, 334);
             this.MediumModeRadioButton.Name = "MediumModeRadioButton";
@@ -252,6 +254,7 @@
             // 
             this.HardModeRadioButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.HardModeRadioButton.AllowDrop = true;
+            this.HardModeRadioButton.AutoCheck = false;
             this.HardModeRadioButton.AutoSize = true;
             this.HardModeRadioButton.Location = new System.Drawing.Point(17, 370);
             this.HardModeRadioButton.Name = "HardModeRadioButton";

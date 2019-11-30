@@ -47,6 +47,8 @@ namespace JakubKazimierskiGame
         bool pause;
         bool gameIsOver;
 
+        private Background background;
+
         #endregion
 
         public Form1()
@@ -93,6 +95,10 @@ namespace JakubKazimierskiGame
 
             enemiesMunitions = new PictureBox[10];
 
+            ///For only now change of colors
+            string col = background.GetColorBackground();
+
+            this.BackColor = Color.FromName(col);
             #endregion
 
             #region Rendering Images loops
@@ -611,6 +617,7 @@ namespace JakubKazimierskiGame
         private void EasyModeRadioButton_Click(object sender, EventArgs e)
         {
             Off_Radio_Buttons();
+            background = new DifficultyModeBackground("Black", 0);
             MessageBox.Show("EasyMode");
             ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
             ReplayButton.Visible = true;
@@ -625,6 +632,7 @@ namespace JakubKazimierskiGame
         private void MediumModeRadioButton_Click(object sender, EventArgs e)
         {
             Off_Radio_Buttons();
+            background = new DifficultyModeBackground("DarkBlue", 4);
             MessageBox.Show("MediumMode");
             ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
             ReplayButton.Visible = true;
@@ -640,6 +648,7 @@ namespace JakubKazimierskiGame
         private void HardModeRadioButton_Click(object sender, EventArgs e)
         {
             Off_Radio_Buttons();
+            background = new DifficultyModeBackground("DarkGreen", 8);
             MessageBox.Show("HardMode");
             ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
             ReplayButton.Visible = true;
