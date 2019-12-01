@@ -511,8 +511,31 @@ namespace JakubKazimierskiGame
                 }
                 if (Player.Bounds.IntersectsWith(enemies[i].Bounds))
                 {
-                    Player.Visible = false;
-                    GameOver("GAME OVER");
+                    //after collision if player still has shield take one from player
+                    if (health.GetShieldAmount() > 0)
+                    {
+
+                        Player.Location = new Point(587, 453);
+                        health.SetShieldAmount((health.GetShieldAmount() - 1));
+                        ShieldLabel.Text = "SHIELD: " + health.GetShieldAmount().ToString();
+                    }
+                    else
+                    {
+                        //after collision take one life from player
+                        if (health.GetLifeAmount() > 0)
+                        {
+                            Player.Location = new Point(587, 453);
+                            health.SetLifeAmount((health.GetLifeAmount() - 1));
+                            LifeLabel.Text = "LIFE: " + health.GetLifeAmount().ToString();
+
+                        }
+                        else
+                        {
+                            Player.Visible = false;
+                            GameOver("GAME OVER");
+                        }
+
+                    }
                 }
                 
 
@@ -523,8 +546,30 @@ namespace JakubKazimierskiGame
 
                 if (Player.Bounds.IntersectsWith(meteors[i].Bounds))
                 {
-                    Player.Visible = false;
-                    GameOver("GAME OVER");
+                    if (health.GetShieldAmount() > 0)
+                    {
+
+                        Player.Location = new Point(587, 453);
+                        health.SetShieldAmount((health.GetShieldAmount() - 1));
+                        ShieldLabel.Text = "SHIELD: " + health.GetShieldAmount().ToString();
+                    }
+                    else
+                    {
+                        //after collision take one life from player
+                        if (health.GetLifeAmount() > 0)
+                        {
+                            Player.Location = new Point(587, 453);
+                            health.SetLifeAmount((health.GetLifeAmount() - 1));
+                            LifeLabel.Text = "LIFE: " + health.GetLifeAmount().ToString();
+                            
+                        }
+                        else
+                        {
+                            Player.Visible = false;
+                            GameOver("GAME OVER");
+                        }
+
+                    }
                 }
             }
         }
@@ -552,7 +597,13 @@ namespace JakubKazimierskiGame
 
             ON_Radio_Buttons();
         }
+        private void GameAfterShoot()
+        {
+            
 
+            StopTimers();
+            StartTimers();
+        }
         /// <summary>
         /// stop timers method, timers are responsible for rendering graphic
         /// </summary>
@@ -613,9 +664,31 @@ namespace JakubKazimierskiGame
             {
                 if(enemiesMunitions[i].Bounds.IntersectsWith(Player.Bounds))
                 {
-                    enemiesMunitions[i].Visible = false;
-                    Player.Visible = false;
-                    GameOver("Game Over");
+                    if (health.GetShieldAmount() > 0)
+                    {
+
+                        Player.Location = new Point(587, 453);
+                        health.SetShieldAmount((health.GetShieldAmount() - 1));
+                        ShieldLabel.Text = "SHIELD: " + health.GetShieldAmount().ToString();
+                    }
+                    else
+                    {
+                        //after collision take one life from player
+                        if (health.GetLifeAmount() > 0)
+                        {
+                            Player.Location = new Point(587, 453);
+                            health.SetLifeAmount((health.GetLifeAmount() - 1));
+                            LifeLabel.Text = "LIFE: " + health.GetLifeAmount().ToString();
+
+                        }
+                        else
+                        {
+                            Player.Visible = false;
+                            GameOver("GAME OVER");
+                        }
+
+                    }
+
 
                 }
             }
@@ -634,14 +707,20 @@ namespace JakubKazimierskiGame
         private void button2_Click(object sender, EventArgs e)
         {
 
+            if (EasyModeRadioButton.Enabled == false && MediumModeRadioButton.Enabled == false && HardModeRadioButton.Enabled == false)
+            {
 
-            
                 this.Controls.Clear();
                 InitializeComponent();
                 Form1_Load(e, e);
                 StopTimers();
                 StartTimers();
-            Off_Radio_Buttons();
+                Off_Radio_Buttons();
+            }
+            else
+            {
+                MessageBox.Show("Choose difficulty mode");
+            }
         }
         /// <summary>
         /// method responsible for using end button, program didn't render proper name
