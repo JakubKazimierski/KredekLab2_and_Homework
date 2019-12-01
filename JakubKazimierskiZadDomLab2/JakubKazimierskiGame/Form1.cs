@@ -25,7 +25,9 @@ namespace JakubKazimierskiGame
 
         PictureBox[] stars;
         int backgroundSpeed;
-         
+
+        PictureBox[] meteors;
+
         int playerSpeed;
 
         PictureBox[] munitions;
@@ -88,7 +90,9 @@ namespace JakubKazimierskiGame
             #region Creating picture  objects
 
             stars = new PictureBox[15];
-                              
+
+            meteors = new PictureBox[6];
+            
             munitions = new PictureBox[1];
 
             enemies = new PictureBox[10];
@@ -121,7 +125,7 @@ namespace JakubKazimierskiGame
 
                 stars[i] = new PictureBox();
                 stars[i].BorderStyle = BorderStyle.None;
-                stars[i].Location = new Point(rand.Next(-25, 500), rand.Next(-10, 500));
+                stars[i].Location = new Point(rand.Next(-25, this.Width), rand.Next(-10, this.Height));
                 if( i % 2 == 1)
                 {
                     stars[i].Size = new Size(2, 2);
@@ -138,7 +142,25 @@ namespace JakubKazimierskiGame
                 this.Controls.Add(stars[i]);
 
             }
-        
+
+            //adding meteors to background
+            for (int i = 0; i < meteors.Length; i++)
+            {
+
+                meteors[i] = new PictureBox();
+                meteors[i].BorderStyle = BorderStyle.None;
+                meteors[i].Location = new Point(rand.Next(-45, this.Width-60), rand.Next(-20, this.Height-100));
+                
+                
+                meteors[i].Size = new Size(10, 12);
+                meteors[i].BackColor = Color.SandyBrown;
+
+                
+                
+                this.Controls.Add(meteors[i]);
+
+            }
+
             //creating enemies positions
             for (int i = 0; i < enemies.Length; i++)
             {
@@ -222,6 +244,16 @@ namespace JakubKazimierskiGame
                 }
             }
 
+            //rendering meteors speed depending from timer
+            for (int i = 0; i < meteors.Length; i++)
+            {
+                meteors[i].Top += backgroundSpeed - 2;
+                if (meteors[i].Top >= this.Height)
+                {
+                    meteors[i].Top = -stars[i].Height;
+                }
+
+            }
         }
 
         #endregion
@@ -477,7 +509,18 @@ namespace JakubKazimierskiGame
                     Player.Visible = false;
                     GameOver("GAME OVER");
                 }
+                
 
+            }
+        
+            for(int i = 0; i < meteors.Length; i++)
+            {
+
+                if (Player.Bounds.IntersectsWith(meteors[i].Bounds))
+                {
+                    Player.Visible = false;
+                    GameOver("GAME OVER");
+                }
             }
         }
 
@@ -619,7 +662,7 @@ namespace JakubKazimierskiGame
         {
             Off_Radio_Buttons();
             background = new DifficultyModeBackground("Black", 4);
-            MessageBox.Show("EasyMode");
+           
             ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
             ReplayButton.Visible = true;
 
@@ -634,7 +677,7 @@ namespace JakubKazimierskiGame
         {
             Off_Radio_Buttons();
             background = new DifficultyModeBackground("DarkBlue", 7);
-            MessageBox.Show("MediumMode");
+           
             ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
             ReplayButton.Visible = true;
 
@@ -650,7 +693,7 @@ namespace JakubKazimierskiGame
         {   
             Off_Radio_Buttons();
             background = new DifficultyModeBackground("MidnightBlue", 9);
-            MessageBox.Show("HardMode");
+           
             ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
             ReplayButton.Visible = true;
 
