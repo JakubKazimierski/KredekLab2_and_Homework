@@ -33,7 +33,7 @@ namespace JakubKazimierskiGame
         PictureBox[] munitions;
         int MunitionSpeed;
 
-        PictureBox[] enemies;
+        PictureBox[] enemies = new PictureBox[10];
         int enemiesSpeed;
 
 
@@ -48,6 +48,9 @@ namespace JakubKazimierskiGame
         int bullets;
         bool pause;
         bool gameIsOver;
+        bool EasyModeFlag = false;
+        bool MediumModeFlag = false;
+        bool HardModeFlag = false;
 
         private Background background;
 
@@ -57,6 +60,12 @@ namespace JakubKazimierskiGame
 
         private Speed speedPlayer;
 
+        Image enemi1 = JakubKazimierskiGame.Properties.Resources.E1;
+        Image enemi2 = JakubKazimierskiGame.Properties.Resources.E2;
+        Image enemi3 = JakubKazimierskiGame.Properties.Resources.E3___Kopia;
+
+        Image boss1 = JakubKazimierskiGame.Properties.Resources.Boss1;
+        Image boss2 = JakubKazimierskiGame.Properties.Resources.Boss2;
         #endregion
 
         public Form1()
@@ -101,7 +110,7 @@ namespace JakubKazimierskiGame
             
             munitions = new PictureBox[bulletsPlayer.GetBulletsAmount()];
 
-            enemies = new PictureBox[10];
+           // enemies = new PictureBox[10];
 
             enemiesMunitions = new PictureBox[10];
 
@@ -201,28 +210,30 @@ namespace JakubKazimierskiGame
             //load enemies img from file
             #region Images of enemies
             //methods to load pictures of enemies
-            
-           
-           // Image enemi1 = Image.FromFile(@"images\\E1.png");
-           
-            Image enemi1 = JakubKazimierskiGame.Properties.Resources.E1;
-            Image enemi2 = JakubKazimierskiGame.Properties.Resources.E2;
-            Image enemi3 = JakubKazimierskiGame.Properties.Resources.E3___Kopia;
 
-            Image boss1 = JakubKazimierskiGame.Properties.Resources.Boss1;
-            Image boss2 = JakubKazimierskiGame.Properties.Resources.Boss2;
 
+            // Image enemi1 = Image.FromFile(@"images\\E1.png");
+            /*
+             Image enemi1 = JakubKazimierskiGame.Properties.Resources.E1;
+             Image enemi2 = JakubKazimierskiGame.Properties.Resources.E2;
+             Image enemi3 = JakubKazimierskiGame.Properties.Resources.E3___Kopia;
+
+             Image boss1 = JakubKazimierskiGame.Properties.Resources.Boss1;
+             Image boss2 = JakubKazimierskiGame.Properties.Resources.Boss2;
+             */
             //create enemies img
-            enemies[0].Image = boss1;
-               enemies[1].Image = enemi3;
-               enemies[2].Image = enemi2;
-               enemies[3].Image = enemi3;
-               enemies[4].Image = enemi1;
-               enemies[5].Image = enemi1;
-               enemies[6].Image = enemi3;
-               enemies[7].Image = enemi3;
-               enemies[8].Image = enemi2;
-               enemies[9].Image = boss2;
+            /* enemies[0].Image = boss1;
+             enemies[1].Image = enemi3;
+             enemies[2].Image = enemi2;
+             enemies[3].Image = enemi3;
+             enemies[4].Image = enemi1;
+             enemies[5].Image = enemi1;
+             enemies[6].Image = enemi3;
+             enemies[7].Image = enemi3;
+             enemies[8].Image = enemi2;
+             enemies[9].Image = boss2;
+             */
+            CreateEnemiesImage();
             #endregion
 
         }
@@ -751,10 +762,12 @@ namespace JakubKazimierskiGame
         private void EasyModeRadioButton_Click(object sender, EventArgs e)
         {
             Off_Radio_Buttons();
+            EasyModeFlag = true;
             background = new DifficultyModeBackground("Black", 4);
             health = new HealthFromDifficultyMode(2,0);
             bulletsPlayer = new BulletsFromDifficultyMode(1);
             speedPlayer = new SpeedFromDifficultyMode(4);
+        
             ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
             ReplayButton.Visible = true;
 
@@ -768,10 +781,13 @@ namespace JakubKazimierskiGame
         private void MediumModeRadioButton_Click(object sender, EventArgs e)
         {
             Off_Radio_Buttons();
+            MediumModeFlag = true;
             background = new DifficultyModeBackground("DarkBlue", 7);
             health = new HealthFromDifficultyMode(3,1);
             bulletsPlayer = new BulletsFromDifficultyMode(2);
             speedPlayer = new SpeedFromDifficultyMode(6);
+            
+
             ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
             ReplayButton.Visible = true;
 
@@ -786,10 +802,12 @@ namespace JakubKazimierskiGame
         private void HardModeRadioButton_Click(object sender, EventArgs e)
         {   
             Off_Radio_Buttons();
+            HardModeFlag = true;
             background = new DifficultyModeBackground("MidnightBlue", 9);
             health = new HealthFromDifficultyMode(4,2);
             bulletsPlayer = new BulletsFromDifficultyMode(3);
             speedPlayer = new SpeedFromDifficultyMode(8);
+          
             ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
             ReplayButton.Visible = true;
 
@@ -811,6 +829,53 @@ namespace JakubKazimierskiGame
         }
         #endregion
 
-      
+       public void CreateEnemiesImage()
+        {
+            if(EasyModeFlag == true)
+            {
+                enemies[0].Image = enemi1;
+                enemies[1].Image = enemi1;
+                enemies[2].Image = enemi2;
+                enemies[3].Image = enemi2;
+                enemies[4].Image = enemi1;
+                enemies[5].Image = enemi1;
+                enemies[6].Image = enemi2;
+                enemies[7].Image = enemi2;
+                enemies[8].Image = enemi1;
+                enemies[9].Image = enemi1;
+                EasyModeFlag = false;
+            }
+            if(MediumModeFlag == true)
+            {
+                enemies[0].Image = enemi2;
+                enemies[1].Image = enemi2;
+                enemies[2].Image = enemi3;
+                enemies[3].Image = enemi3;
+                enemies[4].Image = enemi2;
+                enemies[5].Image = enemi2;
+                enemies[6].Image = enemi3;
+                enemies[7].Image = enemi3;
+                enemies[8].Image = enemi2;
+                enemies[9].Image = enemi2;
+
+                MediumModeFlag = false;
+            }
+            if(HardModeFlag == true)
+            {
+                enemies[0].Image = boss1;
+                enemies[1].Image = boss1;
+                enemies[2].Image = boss2;
+                enemies[3].Image = boss2;
+                enemies[4].Image = boss1;
+                enemies[5].Image = boss1;
+                enemies[6].Image = boss2;
+                enemies[7].Image = boss2;
+                enemies[8].Image = boss1;
+                enemies[9].Image = boss1;
+                HardModeFlag = false;
+            }
+        }
+       
+        
     }
 }
