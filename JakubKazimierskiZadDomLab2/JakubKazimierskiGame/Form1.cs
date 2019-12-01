@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Net;
 using System.IO;
 using System.Resources;
+using WMPLib;
 
 
 
@@ -77,8 +78,13 @@ namespace JakubKazimierskiGame
 
         Image boss1 = JakubKazimierskiGame.Properties.Resources.Boss1;
         Image boss2 = JakubKazimierskiGame.Properties.Resources.Boss2;
+
+        WindowsMediaPlayer gameMedia;
+        WindowsMediaPlayer shootMedia;
+        WindowsMediaPlayer boom;
+
         #endregion
-        
+
         public Form1()
         {
             
@@ -129,6 +135,22 @@ namespace JakubKazimierskiGame
             this.BackColor = Color.FromName(background.GetColorBackground());
             backgroundSpeed = background.GetObstaclesBackground();
 
+            //create object of sound
+            gameMedia = new WindowsMediaPlayer();
+            shootMedia = new WindowsMediaPlayer();
+            boom = new WindowsMediaPlayer();
+
+            gameMedia.URL = @"GameSong.mp3";
+            shootMedia.URL = @"shoot.mp3";
+            boom.URL = @"boom.mp3";
+
+            gameMedia.settings.setMode("loop", true);
+            gameMedia.settings.volume = 5;
+            shootMedia.settings.volume = 1;
+            boom.settings.volume = 6;
+
+            //start music
+            gameMedia.controls.play();
 
             LifeLabel.Text = "LIFE: " + health.GetLifeAmount().ToString();
             ShieldLabel.Text = "SHIELD: " + health.GetShieldAmount().ToString();
@@ -401,7 +423,7 @@ namespace JakubKazimierskiGame
         /// <param name="e"></param>
         private void MunitionTimer_Tick(object sender, EventArgs e)
         {
-           
+            shootMedia.controls.play();
             for (int i = 0; i < munitions.Length; i++)
             {
                 if (munitions[i].Top > 0)
@@ -463,6 +485,7 @@ namespace JakubKazimierskiGame
         /// </summary>
         private void Collision()
         {
+            
             for (int i = 0; i < enemies.Length; i++)
             {
                 for (int j = 0; j < munitions.Length; j++)
@@ -530,6 +553,7 @@ namespace JakubKazimierskiGame
                         Player.Location = new Point(587, 453);
                         health.SetShieldAmount((health.GetShieldAmount() - 1));
                         ShieldLabel.Text = "SHIELD: " + health.GetShieldAmount().ToString();
+                        
                     }
                     else
                     {
@@ -539,12 +563,13 @@ namespace JakubKazimierskiGame
                             Player.Location = new Point(587, 453);
                             health.SetLifeAmount((health.GetLifeAmount() - 1));
                             LifeLabel.Text = "LIFE: " + health.GetLifeAmount().ToString();
-
+                            
                         }
                         else
                         {
                             Player.Visible = false;
                             GameOver("GAME OVER");
+
                         }
 
                     }
@@ -662,8 +687,8 @@ namespace JakubKazimierskiGame
                 else
                 {
                     enemiesMunitions[i].Visible = false;
-                    int x = rand.Next(0, 10);
-                    enemiesMunitions[i].Location = new Point(enemies[x].Location.X + 20, enemies[x].Location.Y + 30);
+                    int x = rand.Next(0, amountEnemy.GetAmount());
+                    enemiesMunitions[i].Location = new Point(enemies[x].Location.X , enemies[x].Location.Y + 30);
                 }
             }
             EnemiesMunitionCollision();
@@ -674,7 +699,8 @@ namespace JakubKazimierskiGame
         /// </summary>
         private void EnemiesMunitionCollision()
         {
-            for(int i = 0; i< enemiesMunitions.Length; i++)
+            
+            for (int i = 0; i< enemiesMunitions.Length; i++)
             {
                 if(enemiesMunitions[i].Bounds.IntersectsWith(Player.Bounds))
                 {
@@ -684,6 +710,8 @@ namespace JakubKazimierskiGame
                         Player.Location = new Point(587, 453);
                         health.SetShieldAmount((health.GetShieldAmount() - 1));
                         ShieldLabel.Text = "SHIELD: " + health.GetShieldAmount().ToString();
+                        //after collision sound
+                        boom.controls.play();
                     }
                     else
                     {
@@ -693,12 +721,15 @@ namespace JakubKazimierskiGame
                             Player.Location = new Point(587, 453);
                             health.SetLifeAmount((health.GetLifeAmount() - 1));
                             LifeLabel.Text = "LIFE: " + health.GetLifeAmount().ToString();
-
+                            //after collision sound
+                            boom.controls.play();
                         }
                         else
                         {
                             Player.Visible = false;
                             GameOver("GAME OVER");
+                            //after collision sound
+                            boom.controls.play();
                         }
 
                     }

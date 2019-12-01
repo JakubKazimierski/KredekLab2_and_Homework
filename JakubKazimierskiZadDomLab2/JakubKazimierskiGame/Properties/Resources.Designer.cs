@@ -61,6 +61,16 @@ namespace JakubKazimierskiGame.Properties {
         }
         
         /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Byte[].
+        /// </summary>
+        public static byte[] boom {
+            get {
+                object obj = ResourceManager.GetObject("boom", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap Boss1 {
@@ -111,6 +121,16 @@ namespace JakubKazimierskiGame.Properties {
         }
         
         /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Byte[].
+        /// </summary>
+        public static byte[] GameSong {
+            get {
+                object obj = ResourceManager.GetObject("GameSong", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap player___Kopia {
@@ -136,6 +156,16 @@ namespace JakubKazimierskiGame.Properties {
         public static string ScoresFile {
             get {
                 return ResourceManager.GetString("ScoresFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Byte[].
+        /// </summary>
+        public static byte[] shoot {
+            get {
+                object obj = ResourceManager.GetObject("shoot", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
