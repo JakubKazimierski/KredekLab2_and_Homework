@@ -1,0 +1,41 @@
+Dodane sa klasy abstrakcyjne:
+	-Background:
+		Z niej dziedziczy klasa DifficultyModeBackground, 
+		obiekty tej klasy decyduja o tle gry
+
+	-Scores:
+		Z niej dziedziczy klasa BestScores, obiekt tej klasy
+		pozwala na zapisywanie do pliku, uzyskanych punktow
+	
+	-Health:
+		z niej dziedziczy klasa HealthFromDifficultyMode,
+		obiekty tejze klasy zaleza od poziomow trudnosci
+		i decyduja o ilosci oslon i ilosci zyc gracza
+
+	-Bullets:
+		z niej dziedziczy klasa BulletsFromDifficultyMode,
+		obiekty tej klasy zaleza od poziomu trudnosci, a wraz
+		z nimi zalezy ilosc pociskow wystrzelonych przez gracza
+
+	-Speed:
+		z niej dziedziczy klasa SpeedFromDifficulyMode,
+		obiekty tej klasy zaleza od poziomu trudnosci wybranego
+		na poczatku gry, a wraz z utworzonymi obiektami, tworzymy
+		predkosc poczatkowa gracza
+			
+	-EnemySpeed:
+		z niej dziedziczy klasa EnemySpeedFromDifficultyMode,
+		z obiektow tej klasy, zaleznych od poziomu trudnosci
+		, tworzymy przeciwnikow o roznej szybkosci
+	
+	-EnemyBullet:
+		z niej dziedziczy klasa EnemyBulletFromDifficultyMode,
+		z obiektow tej klasy, zaleznych od poziomu trudnosci
+		, tworzymy przeciwnikow o roznej szybkosci pociskow
+	-EnemyAmount:
+		
+		z niej dziedziczy klasa EnemyAmountFromDifficultyMode,
+		z obiektow tej klasy, zaleznych od poziomu trudnosci
+		, tworzymy rozn¹ ilosc przeciwnikow na kazdym poziomie
+		trudnosci
+		
