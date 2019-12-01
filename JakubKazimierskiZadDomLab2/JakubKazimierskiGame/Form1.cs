@@ -53,6 +53,7 @@ namespace JakubKazimierskiGame
 
         private Health health;
 
+        private Bullets bulletsPlayer;
         #endregion
 
         public Form1()
@@ -95,7 +96,7 @@ namespace JakubKazimierskiGame
 
             meteors = new PictureBox[6];
             
-            munitions = new PictureBox[1];
+            munitions = new PictureBox[bulletsPlayer.GetBulletsAmount()];
 
             enemies = new PictureBox[10];
 
@@ -119,6 +120,7 @@ namespace JakubKazimierskiGame
                 munitions[i].BorderStyle = BorderStyle.None;
                 munitions[i].Size = new Size(8, 8);
                 munitions[i].BackColor = Color.Red;
+                munitions[i].Location = new Point(Player.Location.X-10 + i*10, Player.Location.Y + 50);
                 this.Controls.Add(munitions[i]);
             }
 
@@ -188,7 +190,7 @@ namespace JakubKazimierskiGame
                 enemiesMunitions[i].BackColor = Color.Magenta;
                 enemiesMunitions[i].Visible = false;
                 int x = rand.Next(0, 10);
-                enemiesMunitions[i].Location = new Point(enemies[x].Location.X, enemies[x].Location.Y - 20);
+                
                 this.Controls.Add(enemiesMunitions[i]);
             }
 
@@ -300,6 +302,7 @@ namespace JakubKazimierskiGame
         /// <param name="e">The event object</param>
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
+            
             if (!pause)
             {
                 if (e.KeyCode == Keys.Right)
@@ -332,6 +335,7 @@ namespace JakubKazimierskiGame
             }
         }
 
+        
         /// <summary>
         ///Method responsible for stop moving
         /// </summary>
@@ -341,7 +345,7 @@ namespace JakubKazimierskiGame
         {
             RightTimer.Stop();
             LeftTimer.Stop();
-
+           
             //pause the game
             if (e.KeyCode == Keys.Space)
             {
@@ -363,7 +367,7 @@ namespace JakubKazimierskiGame
                     }
                 }
             }
-
+            
             //end fire
             if (e.KeyCode == Keys.S)
             {
@@ -401,7 +405,7 @@ namespace JakubKazimierskiGame
                 else
                 {
                     munitions[i].Visible = false;
-                    munitions[i].Location = new Point(Player.Location.X + 20, Player.Location.Y - i * 30);
+                    munitions[i].Location = new Point(Player.Location.X + 40 -i*20, Player.Location.Y - i * 30);
                 }
             }
         }
@@ -716,6 +720,7 @@ namespace JakubKazimierskiGame
                 StopTimers();
                 StartTimers();
                 Off_Radio_Buttons();
+               
             }
             else
             {
@@ -745,6 +750,7 @@ namespace JakubKazimierskiGame
             Off_Radio_Buttons();
             background = new DifficultyModeBackground("Black", 4);
             health = new HealthFromDifficultyMode(2,0);
+            bulletsPlayer = new BulletsFromDifficultyMode(1);
             ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
             ReplayButton.Visible = true;
 
@@ -760,6 +766,7 @@ namespace JakubKazimierskiGame
             Off_Radio_Buttons();
             background = new DifficultyModeBackground("DarkBlue", 7);
             health = new HealthFromDifficultyMode(3,1);
+            bulletsPlayer = new BulletsFromDifficultyMode(2);
             ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
             ReplayButton.Visible = true;
 
@@ -776,7 +783,7 @@ namespace JakubKazimierskiGame
             Off_Radio_Buttons();
             background = new DifficultyModeBackground("MidnightBlue", 9);
             health = new HealthFromDifficultyMode(4,2);
-            
+            bulletsPlayer = new BulletsFromDifficultyMode(3);
             ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
             ReplayButton.Visible = true;
 
@@ -787,7 +794,7 @@ namespace JakubKazimierskiGame
             EasyModeRadioButton.Enabled = false;
             MediumModeRadioButton.Enabled = false;
             HardModeRadioButton.Enabled = false;
-
+            
         }
         public void ON_Radio_Buttons()
         {
@@ -797,5 +804,7 @@ namespace JakubKazimierskiGame
 
         }
         #endregion
+
+      
     }
 }
