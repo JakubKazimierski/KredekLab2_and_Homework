@@ -131,6 +131,15 @@ namespace JakubKazimierskiGame.Properties {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu .
+        /// </summary>
+        public static string ScoresFile {
+            get {
+                return ResourceManager.GetString("ScoresFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap Spaceship_PNG_File___Kopia {

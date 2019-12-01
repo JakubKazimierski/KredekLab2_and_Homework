@@ -73,7 +73,7 @@ namespace JakubKazimierskiGame
         Image boss1 = JakubKazimierskiGame.Properties.Resources.Boss1;
         Image boss2 = JakubKazimierskiGame.Properties.Resources.Boss2;
         #endregion
-
+        
         public Form1()
         {
             
@@ -618,7 +618,9 @@ namespace JakubKazimierskiGame
 
             EndButton.Location = new Point(this.Width / 2 - 120, 350);
             EndButton.Visible = true;
-            
+
+            ScoresButton.Visible = true;
+            ScoresButton.Enabled = true;
             StopTimers();
 
             ON_Radio_Buttons();
@@ -732,7 +734,7 @@ namespace JakubKazimierskiGame
         /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
-
+            ScoresButton.Enabled = false;
             if (EasyModeRadioButton.Enabled == false && MediumModeRadioButton.Enabled == false && HardModeRadioButton.Enabled == false)
             {
 
@@ -742,7 +744,8 @@ namespace JakubKazimierskiGame
                 StopTimers();
                 StartTimers();
                 Off_Radio_Buttons();
-               
+                
+
             }
             else
             {
@@ -893,7 +896,10 @@ namespace JakubKazimierskiGame
                 HardModeFlag = false;
             }
         }
-       
-        
+
+        private void ScoresButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Place for best scores");
+        }
     }
 }

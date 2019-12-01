@@ -123,5 +123,8 @@
   <ItemGroup>
     <None Include="images\Spaceship-PNG-File - Kopia.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\ScoresFile.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

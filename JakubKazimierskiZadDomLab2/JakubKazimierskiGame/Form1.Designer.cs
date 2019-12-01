@@ -46,12 +46,13 @@
             this.BulletsLabel = new System.Windows.Forms.Label();
             this.SpeedLvlLabel = new System.Windows.Forms.Label();
             this.GroupBoxMenu = new System.Windows.Forms.GroupBox();
+            this.ShieldLabel = new System.Windows.Forms.Label();
+            this.LifeLabel = new System.Windows.Forms.Label();
             this.HardModeRadioButton = new System.Windows.Forms.RadioButton();
             this.MediumModeRadioButton = new System.Windows.Forms.RadioButton();
             this.EasyModeRadioButton = new System.Windows.Forms.RadioButton();
             this.DifficultyLabel = new System.Windows.Forms.Label();
-            this.LifeLabel = new System.Windows.Forms.Label();
-            this.ShieldLabel = new System.Windows.Forms.Label();
+            this.ScoresButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Player)).BeginInit();
             this.GroupBoxMenu.SuspendLayout();
             this.SuspendLayout();
@@ -195,6 +196,7 @@
             // 
             // GroupBoxMenu
             // 
+            this.GroupBoxMenu.Controls.Add(this.ScoresButton);
             this.GroupBoxMenu.Controls.Add(this.ShieldLabel);
             this.GroupBoxMenu.Controls.Add(this.LifeLabel);
             this.GroupBoxMenu.Controls.Add(this.HardModeRadioButton);
@@ -214,6 +216,30 @@
             this.GroupBoxMenu.TabIndex = 9;
             this.GroupBoxMenu.TabStop = false;
             this.GroupBoxMenu.Text = "OptionsMenu";
+            // 
+            // ShieldLabel
+            // 
+            this.ShieldLabel.BackColor = System.Drawing.Color.Transparent;
+            this.ShieldLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.ShieldLabel.ForeColor = System.Drawing.Color.Silver;
+            this.ShieldLabel.Location = new System.Drawing.Point(8, 277);
+            this.ShieldLabel.Name = "ShieldLabel";
+            this.ShieldLabel.Size = new System.Drawing.Size(94, 23);
+            this.ShieldLabel.TabIndex = 14;
+            this.ShieldLabel.Text = "SHIELD:";
+            this.ShieldLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // LifeLabel
+            // 
+            this.LifeLabel.BackColor = System.Drawing.Color.Transparent;
+            this.LifeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.LifeLabel.ForeColor = System.Drawing.Color.Silver;
+            this.LifeLabel.Location = new System.Drawing.Point(8, 242);
+            this.LifeLabel.Name = "LifeLabel";
+            this.LifeLabel.Size = new System.Drawing.Size(94, 23);
+            this.LifeLabel.TabIndex = 13;
+            this.LifeLabel.Text = "LIFE:";
+            this.LifeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // HardModeRadioButton
             // 
@@ -268,29 +294,18 @@
             this.DifficultyLabel.Text = "DifficulyMode";
             this.DifficultyLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // LifeLabel
+            // ScoresButton
             // 
-            this.LifeLabel.BackColor = System.Drawing.Color.Transparent;
-            this.LifeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.LifeLabel.ForeColor = System.Drawing.Color.Silver;
-            this.LifeLabel.Location = new System.Drawing.Point(8, 242);
-            this.LifeLabel.Name = "LifeLabel";
-            this.LifeLabel.Size = new System.Drawing.Size(94, 23);
-            this.LifeLabel.TabIndex = 13;
-            this.LifeLabel.Text = "LIFE:";
-            this.LifeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // ShieldLabel
-            // 
-            this.ShieldLabel.BackColor = System.Drawing.Color.Transparent;
-            this.ShieldLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.ShieldLabel.ForeColor = System.Drawing.Color.Silver;
-            this.ShieldLabel.Location = new System.Drawing.Point(8, 277);
-            this.ShieldLabel.Name = "ShieldLabel";
-            this.ShieldLabel.Size = new System.Drawing.Size(94, 23);
-            this.ShieldLabel.TabIndex = 14;
-            this.ShieldLabel.Text = "SHIELD:";
-            this.ShieldLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ScoresButton.Enabled = false;
+            this.ScoresButton.ForeColor = System.Drawing.Color.Maroon;
+            this.ScoresButton.Location = new System.Drawing.Point(34, 320);
+            this.ScoresButton.Name = "ScoresButton";
+            this.ScoresButton.Size = new System.Drawing.Size(80, 23);
+            this.ScoresButton.TabIndex = 15;
+            this.ScoresButton.Text = "BestScores";
+            this.ScoresButton.UseVisualStyleBackColor = true;
+            this.ScoresButton.Visible = false;
+            this.ScoresButton.Click += new System.EventHandler(this.ScoresButton_Click);
             // 
             // Form1
             // 
@@ -342,6 +357,7 @@
         private System.Windows.Forms.Label DifficultyLabel;
         private System.Windows.Forms.Label ShieldLabel;
         private System.Windows.Forms.Label LifeLabel;
+        private System.Windows.Forms.Button ScoresButton;
     }
 }
 
