@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.IO;
+using System.Resources;
 
 
 
@@ -65,6 +66,10 @@ namespace JakubKazimierskiGame
         private EnemySpeed speedEnemy;
 
         private EnemyAmount amountEnemy;
+
+        private Scores highScores;
+
+        private List<int> ScoresList = new List<int>();//list for scores
 
         Image enemi1 = JakubKazimierskiGame.Properties.Resources.E1;
         Image enemi2 = JakubKazimierskiGame.Properties.Resources.E2;
@@ -608,6 +613,12 @@ namespace JakubKazimierskiGame
         /// <param name="str"></param>
         private void GameOver(String str)
         {
+            highScores = new BestScore(score);
+
+            ScoresList.Add(highScores.GetScore());//adding scores to list
+
+
+
             label1.Text = str;
             label1.BackColor = Color.FromName(background.GetColorBackground());
             label1.Location = new Point(this.Width / 2 - 120, 150);
@@ -899,7 +910,52 @@ namespace JakubKazimierskiGame
 
         private void ScoresButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Place for best scores");
+
+            List<string> scoresHierarchy = new List<string>();
+            //MessageBox.Show(JakubKazimierskiGame.Properties.Resources.ScoresFile);
+            //MessageBox.Show(ScoresList[0].ToString());
+            StreamWriter writer = new StreamWriter(@"ScoresFile.txt");
+
+            for (int i = 0; i < ScoresList.Count; i++)
+            {
+
+                writer.WriteLine(ScoresList[i].ToString());
+            }
+
+
+            writer.Close();
+
+
+            int hierarchy = 1;
+            StreamReader reader = new StreamReader(@"ScoresFile.txt");
+
+            while (!reader.EndOfStream)
+            {
+                scoresHierarchy.Add(hierarchy.ToString() +" : " + reader.ReadLine());
+                hierarchy++;
+            }
+            reader.Close();
+
+            StreamWriter writerForFinalyScores = new StreamWriter(@"ScoresFile.txt");
+
+            for (int i = 0; i < scoresHierarchy.Count; i++)
+            {
+
+                writerForFinalyScores.WriteLine(scoresHierarchy[i].ToString());
+            }
+
+            writerForFinalyScores.Close();
+
+            string textScores = System.IO.File.ReadAllText(@"ScoresFile.txt");
+
+            MessageBox.Show(textScores);
+
+
+
         }
+
+
+
+
     }
 }
