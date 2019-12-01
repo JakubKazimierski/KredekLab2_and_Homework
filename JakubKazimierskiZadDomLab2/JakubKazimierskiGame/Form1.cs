@@ -202,7 +202,7 @@ namespace JakubKazimierskiGame
                 enemies[i].BorderStyle = BorderStyle.None;
                 enemies[i].Visible = false;
             
-                enemies[i].Location = new Point((i + 1) * 50, -50);
+                enemies[i].Location = new Point((i + 1) * 50 + 40 , -50);
                 this.Controls.Add(enemies[i]);
             }
 
@@ -329,35 +329,37 @@ namespace JakubKazimierskiGame
         /// <param name="e">The event object</param>
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            
-            if (!pause)
+            if (EasyModeRadioButton.Enabled == false && MediumModeRadioButton.Enabled == false && HardModeRadioButton.Enabled == false)
             {
-                if (e.KeyCode == Keys.Right)
+                if (!pause)
                 {
-                    if( speedLvl < 5)//improve speed
+                    if (e.KeyCode == Keys.Right)
                     {
-                        RightTimer.Interval = 5 - speedLvl;
+                        if (speedLvl < 5)//improve speed
+                        {
+                            RightTimer.Interval = 5 - speedLvl;
+                        }
+                        RightTimer.Start();
                     }
-                    RightTimer.Start();
-                }
-                if (e.KeyCode == Keys.Left)
-                {
-                    if (speedLvl < 5)//imporve speed 
+                    if (e.KeyCode == Keys.Left)
                     {
-                        LeftTimer.Interval = 5 - speedLvl;
+                        if (speedLvl < 5)//imporve speed 
+                        {
+                            LeftTimer.Interval = 5 - speedLvl;
+                        }
+                        LeftTimer.Start();
                     }
-                    LeftTimer.Start();
-                }
 
-                //start fire
-                if (e.KeyCode == Keys.A)
-                {
-                    if (bullets <= 3) //more bullets, more intervals of shooting
+                    //start fire
+                    if (e.KeyCode == Keys.A)
                     {
-                        MunitionTimer.Interval = 31 - 10 * bullets;
+                        if (bullets <= 3) //more bullets, more intervals of shooting
+                        {
+                            MunitionTimer.Interval = 31 - 10 * bullets;
+                        }
+                        MunitionTimer.Start();
+
                     }
-                    MunitionTimer.Start();
-                    
                 }
             }
         }
@@ -372,41 +374,43 @@ namespace JakubKazimierskiGame
         {
             RightTimer.Stop();
             LeftTimer.Stop();
-           
-            //pause the game
-            if (e.KeyCode == Keys.Space)
+            if (EasyModeRadioButton.Enabled == false && MediumModeRadioButton.Enabled == false && HardModeRadioButton.Enabled == false)
             {
-                if (!gameIsOver)
+                //pause the game
+                if (e.KeyCode == Keys.Space)
                 {
-                    if (pause)
+                    if (!gameIsOver)
                     {
-                        StartTimers();
-                        label1.Visible = false;
-                        pause = false;
-                    }
-                    else
-                    {
-                        label1.Location = new Point(this.Width / 2 - 120, 150);
-                        label1.Text = "PAUSED";
-                        label1.Visible = true;
-                        StopTimers();
-                        pause = true;
+                        if (pause)
+                        {
+                            StartTimers();
+                            label1.Visible = false;
+                            pause = false;
+                        }
+                        else
+                        {
+                            label1.Location = new Point(this.Width / 2 - 120, 150);
+                            label1.Text = "PAUSED";
+                            label1.Visible = true;
+                            StopTimers();
+                            pause = true;
+                        }
                     }
                 }
-            }
-            
-            //end fire
-            if (e.KeyCode == Keys.S)
-            {
 
-                MunitionTimer.Stop();
-                for (int i = 0; i < munitions.Length; i++)
+                //end fire
+                if (e.KeyCode == Keys.S)
                 {
-                    
-                    munitions[i].Visible = false;
-                    
-                }
 
+                    MunitionTimer.Stop();
+                    for (int i = 0; i < munitions.Length; i++)
+                    {
+
+                        munitions[i].Visible = false;
+
+                    }
+
+                }
             }
         }
         #endregion

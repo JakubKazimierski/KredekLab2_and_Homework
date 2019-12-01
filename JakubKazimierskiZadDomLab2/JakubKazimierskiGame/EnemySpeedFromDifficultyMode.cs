@@ -8,6 +8,10 @@ namespace JakubKazimierskiGame
 {
     class EnemySpeedFromDifficultyMode : EnemySpeed
     {
+        /// <summary>
+        /// Connstructor of class
+        /// </summary>
+        /// <param name="number"></param>
         public EnemySpeedFromDifficultyMode(int number)
         {
             speed = number;

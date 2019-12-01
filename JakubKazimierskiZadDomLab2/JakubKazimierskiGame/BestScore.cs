@@ -8,10 +8,14 @@ namespace JakubKazimierskiGame
 {
     class BestScore : Scores
     {
+        /// <summary>
+        /// Constructor of class
+        /// </summary>
+        /// <param name="number"></param>
         public BestScore(int number)
         {
             score = number;
         }
-        //this class will use StreamReader 
+         
     }
 }

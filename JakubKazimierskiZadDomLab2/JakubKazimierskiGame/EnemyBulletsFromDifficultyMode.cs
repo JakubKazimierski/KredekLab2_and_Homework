@@ -8,7 +8,10 @@ namespace JakubKazimierskiGame
 {
     class EnemyBulletsFromDifficultyMode : EnemyBullets
     {
-        
+        /// <summary>
+        /// Constructor of class
+        /// </summary>
+        /// <param name="amount"></param>        
         public EnemyBulletsFromDifficultyMode(int amount)
         {
             bullets = amount;

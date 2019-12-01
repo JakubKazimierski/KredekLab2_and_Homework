@@ -8,6 +8,11 @@ namespace JakubKazimierskiGame
 {
     class DifficultyModeBackground : Background
     {
+        /// <summary>
+        /// Constructor of class
+        /// </summary>
+        /// <param name="colorName"></param>
+        /// <param name="amount"></param>
         public DifficultyModeBackground(string colorName, int amount)
         {
             colorBackground = colorName;

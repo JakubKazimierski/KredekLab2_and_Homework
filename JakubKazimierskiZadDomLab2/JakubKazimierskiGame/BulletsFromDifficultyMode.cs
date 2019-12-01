@@ -8,6 +8,10 @@ namespace JakubKazimierskiGame
 {
     class BulletsFromDifficultyMode : Bullets
     {
+        /// <summary>
+        /// Constructor of class
+        /// </summary>
+        /// <param name="amount"></param>
         public BulletsFromDifficultyMode(int amount)
         {
             amountBullets = amount; 

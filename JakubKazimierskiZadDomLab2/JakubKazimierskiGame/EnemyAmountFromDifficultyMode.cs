@@ -8,6 +8,10 @@ namespace JakubKazimierskiGame
 {
     class EnemyAmountFromDifficultyMode : EnemyAmount
     {
+        /// <summary>
+        /// Constructor of class
+        /// </summary>
+        /// <param name="number"></param>
         public EnemyAmountFromDifficultyMode(int number)
         {
             amount = number;

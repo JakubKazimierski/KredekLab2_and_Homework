@@ -8,6 +8,10 @@ namespace JakubKazimierskiGame
 {
     class SpeedFromDifficultyMode : Speed
     {
+        /// <summary>
+        /// constructor of class
+        /// </summary>
+        /// <param name="level"></param>
         public SpeedFromDifficultyMode(int level)
         {
             speedLevel = level;

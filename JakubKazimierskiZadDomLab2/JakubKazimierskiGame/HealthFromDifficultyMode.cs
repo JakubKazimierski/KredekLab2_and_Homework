@@ -9,7 +9,11 @@ namespace JakubKazimierskiGame
     class HealthFromDifficultyMode : Health
     {
         
-
+        /// <summary>
+        /// Constructor of class
+        /// </summary>
+        /// <param name="amountLife"></param>
+        /// <param name="amountShield"></param>
         public HealthFromDifficultyMode(int amountLife, int amountShield)
         {
             lifeAmount = amountLife;
