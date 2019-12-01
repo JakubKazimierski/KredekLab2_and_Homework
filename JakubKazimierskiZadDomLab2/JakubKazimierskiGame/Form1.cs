@@ -103,59 +103,60 @@ namespace JakubKazimierskiGame
         {
             #region creating variables object
             //assigmnet of values to variables
-            
-        
-            MunitionSpeed = 20;            
-            difficulty = 9;
-            level = 1;
-            score = 0;
-            money = 0;
-            speedLvl = 1;
-            bullets = 1;//speed of bullets not amount
-            pause = false;
-            gameIsOver = false;
-            rand = new Random();
-            #endregion
+            if (background.GetColorBackground() != null && health.GetLifeAmount() != null && health.GetShieldAmount() != null && bulletsPlayer.GetBulletsAmount() != null && speedPlayer.GetSpeedLevel() != null && enemyBullet.GetBullets() != null && speedEnemy.GetSpeed() != null && amountEnemy.GetAmount() != null)
+            {
 
-            #region Creating picture  objects
+                MunitionSpeed = 20;
+                difficulty = 9;
+                level = 1;
+                score = 0;
+                money = 0;
+                speedLvl = 1;
+                bullets = 1;//speed of bullets not amount
+                pause = false;
+                gameIsOver = false;
+                rand = new Random();
+                #endregion
 
-            stars = new PictureBox[15];
+                #region Creating picture  objects
 
-            meteors = new PictureBox[6];
-            
-            munitions = new PictureBox[bulletsPlayer.GetBulletsAmount()];
+                stars = new PictureBox[15];
 
-            
+                meteors = new PictureBox[6];
 
-            enemies = new PictureBox[amountEnemy.GetAmount()];
+                munitions = new PictureBox[bulletsPlayer.GetBulletsAmount()];
 
-            enemiesMunitions = new PictureBox[amountEnemy.GetAmount()];
 
-           //thanks to initialization below background speed and color depends from difficulty mode
-            this.BackColor = Color.FromName(background.GetColorBackground());
-            backgroundSpeed = background.GetObstaclesBackground();
 
-            //create object of sound
-            gameMedia = new WindowsMediaPlayer();
-            shootMedia = new WindowsMediaPlayer();
-            boom = new WindowsMediaPlayer();
+                enemies = new PictureBox[amountEnemy.GetAmount()];
 
-            gameMedia.URL = @"GameSong.mp3";
-            shootMedia.URL = @"shoot.mp3";
-            boom.URL = @"boom.mp3";
+                enemiesMunitions = new PictureBox[amountEnemy.GetAmount()];
 
-            gameMedia.settings.setMode("loop", true);
-            gameMedia.settings.volume = 5;
-            shootMedia.settings.volume = 1;
-            boom.settings.volume = 6;
+                //thanks to initialization below background speed and color depends from difficulty mode
+                this.BackColor = Color.FromName(background.GetColorBackground());
+                backgroundSpeed = background.GetObstaclesBackground();
 
-            //start music
-            gameMedia.controls.play();
+                //create object of sound
+                gameMedia = new WindowsMediaPlayer();
+                shootMedia = new WindowsMediaPlayer();
+                boom = new WindowsMediaPlayer();
 
-            LifeLabel.Text = "LIFE: " + health.GetLifeAmount().ToString();
-            ShieldLabel.Text = "SHIELD: " + health.GetShieldAmount().ToString();
-            #endregion
+                gameMedia.URL = @"GameSong.mp3";
+                shootMedia.URL = @"shoot.mp3";
+                boom.URL = @"boom.mp3";
 
+                gameMedia.settings.setMode("loop", true);
+                gameMedia.settings.volume = 5;
+                shootMedia.settings.volume = 1;
+                boom.settings.volume = 6;
+
+                //start music
+                gameMedia.controls.play();
+
+                LifeLabel.Text = "LIFE: " + health.GetLifeAmount().ToString();
+                ShieldLabel.Text = "SHIELD: " + health.GetShieldAmount().ToString();
+                #endregion
+            }
             #region Rendering Images loops
             //rendering ammo
             for (int i = 0; i<munitions.Length; i++ )
