@@ -101,160 +101,161 @@ namespace JakubKazimierskiGame
         /// <param name="e">The event object</param>
         private void Form1_Load(object sender, EventArgs e)
         {
+
             try
             {
                 #region creating variables object
                 //assigmnet of values to variables
-                
-
-                    MunitionSpeed = 20;
-                    difficulty = 9;
-                    level = 1;
-                    score = 0;
-                    money = 0;
-                    speedLvl = 1;
-                    bullets = 1;//speed of bullets not amount
-                    pause = false;
-                    gameIsOver = false;
-                    rand = new Random();
-                    #endregion
-
-                    #region Creating picture  objects
-
-                    stars = new PictureBox[15];
-
-                    meteors = new PictureBox[6];
-
-                    munitions = new PictureBox[bulletsPlayer.GetBulletsAmount()];
 
 
-
-                    enemies = new PictureBox[amountEnemy.GetAmount()];
-
-                    enemiesMunitions = new PictureBox[amountEnemy.GetAmount()];
-
-                    //thanks to initialization below background speed and color depends from difficulty mode
-                    this.BackColor = Color.FromName(background.GetColorBackground());
-                    backgroundSpeed = background.GetObstaclesBackground();
-
-                    //create object of sound
-                    gameMedia = new WindowsMediaPlayer();
-                    shootMedia = new WindowsMediaPlayer();
-                    boom = new WindowsMediaPlayer();
-
-                    gameMedia.URL = @"GameSong.mp3";
-                    shootMedia.URL = @"shoot.mp3";
-                    boom.URL = @"boom.mp3";
-
-                    gameMedia.settings.setMode("loop", true);
-                    gameMedia.settings.volume = 5;
-                    shootMedia.settings.volume = 1;
-                    boom.settings.volume = 6;
-
-                    //start music
-                    gameMedia.controls.play();
-
-                    LifeLabel.Text = "LIFE: " + health.GetLifeAmount().ToString();
-                    ShieldLabel.Text = "SHIELD: " + health.GetShieldAmount().ToString();
-                    #endregion
-                
-         
-            #region Rendering Images loops
-            //rendering ammo
-            for (int i = 0; i<munitions.Length; i++ )
-            {
-
-                munitions[i] = new PictureBox();
-                munitions[i].BorderStyle = BorderStyle.None;
-                munitions[i].Size = new Size(8, 8);
-                munitions[i].BackColor = Color.Red;
-                munitions[i].Location = new Point(Player.Location.X-10 + i*10, Player.Location.Y + 50);
-                this.Controls.Add(munitions[i]);
-            }
-
-
-
-            //rendering stars at background
-            for (int i = 0; i < stars.Length; i ++)
-            {
-
-                stars[i] = new PictureBox();
-                stars[i].BorderStyle = BorderStyle.None;
-                stars[i].Location = new Point(rand.Next(-25, this.Width), rand.Next(-10, this.Height));
-                if( i % 2 == 1)
-                {
-                    stars[i].Size = new Size(2, 2);
-                    stars[i].BackColor = Color.White;
-
-                }
-                else
-                {
-                    stars[i].Size = new Size(3, 3);
-                    stars[i].BackColor = Color.DarkGray;
-                }
-
-
-                this.Controls.Add(stars[i]);
-
-            }
-
-            //rendering meteors at background, meteors are enemies of player
-            for (int i = 0; i < meteors.Length; i++)
-            {
-
-                meteors[i] = new PictureBox();
-                meteors[i].BorderStyle = BorderStyle.None;
-                meteors[i].Location = new Point(rand.Next(-45, this.Width-60), rand.Next(-20, this.Height-100));
-                
-                
-                meteors[i].Size = new Size(10, 12);
-                meteors[i].BackColor = Color.SandyBrown;
-
-                
-                
-                this.Controls.Add(meteors[i]);
-
-            }
-
-            //creating enemies positions
-            for (int i = 0; i < enemies.Length; i++)
-            {
-                enemies[i] = new PictureBox();
-                enemies[i].Size = new Size(40, 40);
-                enemies[i].SizeMode = PictureBoxSizeMode.Zoom;
-                enemies[i].BorderStyle = BorderStyle.None;
-                enemies[i].Visible = false;
-            
-                enemies[i].Location = new Point((i + 1) * 50 + 40 , -50);
-                this.Controls.Add(enemies[i]);
-            }
-
-            //creating postions of enemies bullets
-            for (int i = 0; i < enemiesMunitions.Length; i++)
-            {
-
-                enemiesMunitions[i] = new PictureBox();
-                enemiesMunitions[i].Size = new Size(2, 25);
-                enemiesMunitions[i].BackColor = Color.Magenta;
-                enemiesMunitions[i].Visible = false;
-                int x = rand.Next(0, 10);
-                
-                this.Controls.Add(enemiesMunitions[i]);
-            }
-
-            #endregion
-            //load enemies img from file
-            #region Images of enemies
-            //methods to load pictures of enemies
-
-            CreateEnemiesImage();
+                MunitionSpeed = 20;
+                difficulty = 9;
+                level = 1;
+                score = 0;
+                money = 0;
+                speedLvl = 1;
+                bullets = 1;//speed of bullets not amount
+                pause = false;
+                gameIsOver = false;
+                rand = new Random();
                 #endregion
-            }
+
+                #region Creating picture  objects
+
+                stars = new PictureBox[15];
+
+                meteors = new PictureBox[6];
+
+                munitions = new PictureBox[bulletsPlayer.GetBulletsAmount()];
+
+
+
+                enemies = new PictureBox[amountEnemy.GetAmount()];
+
+                enemiesMunitions = new PictureBox[amountEnemy.GetAmount()];
+
+                //thanks to initialization below background speed and color depends from difficulty mode
+                this.BackColor = Color.FromName(background.GetColorBackground());
+                backgroundSpeed = background.GetObstaclesBackground();
+
+                //create object of sound
+                gameMedia = new WindowsMediaPlayer();
+                shootMedia = new WindowsMediaPlayer();
+                boom = new WindowsMediaPlayer();
+
+                gameMedia.URL = @"GameSong.mp3";
+                shootMedia.URL = @"shoot.mp3";
+                boom.URL = @"boom.mp3";
+
+                gameMedia.settings.setMode("loop", true);
+                gameMedia.settings.volume = 5;
+                shootMedia.settings.volume = 1;
+                boom.settings.volume = 6;
+
+                //start music
+                gameMedia.controls.play();
+
+                LifeLabel.Text = "LIFE: " + health.GetLifeAmount().ToString();
+                ShieldLabel.Text = "SHIELD: " + health.GetShieldAmount().ToString();
+                #endregion
+
+
+                #region Rendering Images loops
+                //rendering ammo
+                for (int i = 0; i < munitions.Length; i++)
+                {
+
+                    munitions[i] = new PictureBox();
+                    munitions[i].BorderStyle = BorderStyle.None;
+                    munitions[i].Size = new Size(8, 8);
+                    munitions[i].BackColor = Color.Red;
+                    munitions[i].Location = new Point(Player.Location.X - 10 + i * 10, Player.Location.Y + 50);
+                    this.Controls.Add(munitions[i]);
+                }
+
+
+
+                //rendering stars at background
+                for (int i = 0; i < stars.Length; i++)
+                {
+
+                    stars[i] = new PictureBox();
+                    stars[i].BorderStyle = BorderStyle.None;
+                    stars[i].Location = new Point(rand.Next(-25, this.Width), rand.Next(-10, this.Height));
+                    if (i % 2 == 1)
+                    {
+                        stars[i].Size = new Size(2, 2);
+                        stars[i].BackColor = Color.White;
+
+                    }
+                    else
+                    {
+                        stars[i].Size = new Size(3, 3);
+                        stars[i].BackColor = Color.DarkGray;
+                    }
+
+
+                    this.Controls.Add(stars[i]);
+
+                }
+
+                //rendering meteors at background, meteors are enemies of player
+                for (int i = 0; i < meteors.Length; i++)
+                {
+
+                    meteors[i] = new PictureBox();
+                    meteors[i].BorderStyle = BorderStyle.None;
+                    meteors[i].Location = new Point(rand.Next(-45, this.Width - 60), rand.Next(-20, this.Height - 100));
+
+
+                    meteors[i].Size = new Size(10, 12);
+                    meteors[i].BackColor = Color.SandyBrown;
+
+
+
+                    this.Controls.Add(meteors[i]);
+
+                }
+
+                //creating enemies positions
+                for (int i = 0; i < enemies.Length; i++)
+                {
+                    enemies[i] = new PictureBox();
+                    enemies[i].Size = new Size(40, 40);
+                    enemies[i].SizeMode = PictureBoxSizeMode.Zoom;
+                    enemies[i].BorderStyle = BorderStyle.None;
+                    enemies[i].Visible = false;
+
+                    enemies[i].Location = new Point((i + 1) * 50 + 40, -50);
+                    this.Controls.Add(enemies[i]);
+                }
+
+                //creating postions of enemies bullets
+                for (int i = 0; i < enemiesMunitions.Length; i++)
+                {
+
+                    enemiesMunitions[i] = new PictureBox();
+                    enemiesMunitions[i].Size = new Size(2, 25);
+                    enemiesMunitions[i].BackColor = Color.Magenta;
+                    enemiesMunitions[i].Visible = false;
+                    int x = rand.Next(0, 10);
+
+                    this.Controls.Add(enemiesMunitions[i]);
+                }
+
+                #endregion
+                //load enemies img from file
+                #region Images of enemies
+                //methods to load pictures of enemies
+
+                CreateEnemiesImage();
+                #endregion
+            }              
             catch (Exception ex)
             {
                 MessageBox.Show("Odpalanie");
             }
-        }
+}
         /// <summary>
         /// Method of timer, which is responsible for moving background
         /// </summary>
