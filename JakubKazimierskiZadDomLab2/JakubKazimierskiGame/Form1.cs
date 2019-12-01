@@ -33,12 +33,12 @@ namespace JakubKazimierskiGame
         PictureBox[] munitions;
         int MunitionSpeed;
 
-        PictureBox[] enemies = new PictureBox[10];
-        int enemiesSpeed;
+        PictureBox[] enemies;// = new PictureBox[10];
+        
 
 
         PictureBox[] enemiesMunitions;
-        int enemiesMunitionSpeed;
+        
 
         int score;
         int level;
@@ -59,6 +59,12 @@ namespace JakubKazimierskiGame
         private Bullets bulletsPlayer;
 
         private Speed speedPlayer;
+
+        private EnemyBullets enemyBullet;
+
+        private EnemySpeed speedEnemy;
+
+        private EnemyAmount amountEnemy;
 
         Image enemi1 = JakubKazimierskiGame.Properties.Resources.E1;
         Image enemi2 = JakubKazimierskiGame.Properties.Resources.E2;
@@ -89,8 +95,8 @@ namespace JakubKazimierskiGame
             
         
             MunitionSpeed = 20;
-            enemiesSpeed = 4;
-            enemiesMunitionSpeed = 4;
+        
+            
             difficulty = 9;
             level = 1;
             score = 0;
@@ -110,9 +116,11 @@ namespace JakubKazimierskiGame
             
             munitions = new PictureBox[bulletsPlayer.GetBulletsAmount()];
 
-           // enemies = new PictureBox[10];
+            // enemies = new PictureBox[10];
 
-            enemiesMunitions = new PictureBox[10];
+            enemies = new PictureBox[amountEnemy.GetAmount()];
+
+            enemiesMunitions = new PictureBox[amountEnemy.GetAmount()];
 
            //thanks to initialization below background speed and color depends from difficulty mode
             this.BackColor = Color.FromName(background.GetColorBackground());
@@ -440,7 +448,7 @@ namespace JakubKazimierskiGame
                     if (array[i] != null)
                     {
                         array[i].Visible = true;
-                        array[i].Top += speed;
+                        array[i].Top += speedEnemy.GetSpeed();
 
                         if (array[i].Top > this.Height)
                         {
@@ -459,7 +467,7 @@ namespace JakubKazimierskiGame
         private void MoveEnemiesTimer_Tick(object sender, EventArgs e)
         {
             Collision();
-            MoveEnemies(enemies, enemiesSpeed);
+            MoveEnemies(enemies, speedEnemy.GetSpeed());
         }
         #endregion
 
@@ -484,11 +492,11 @@ namespace JakubKazimierskiGame
                             level += 1;
                             levelLabel.Text = (level < 10) ? "LEVEL: 0" + level.ToString() : "LEVEL: " + level.ToString();
 
-                            if (enemiesSpeed <= 10 && enemiesMunitionSpeed <=10 && difficulty >= 0)
+                            if (speedEnemy.GetSpeed() <= 10 && enemyBullet.GetBullets() <=10 && difficulty >= 0)
                             {
                                 difficulty--;
-                                enemiesSpeed++;
-                                enemiesMunitionSpeed++;
+                                speedEnemy.SetSpeed(speedEnemy.GetSpeed()+1);
+                                enemyBullet.SetBullets(enemyBullet.GetBullets()+1);
                             }
 
                             if(level == 10)
@@ -661,7 +669,7 @@ namespace JakubKazimierskiGame
                 if(enemiesMunitions[i].Top < this.Height)
                 {
                     enemiesMunitions[i].Visible = true;
-                    enemiesMunitions[i].Top += enemiesMunitionSpeed; 
+                    enemiesMunitions[i].Top += enemyBullet.GetBullets(); 
                 }
                 else
                 {
@@ -767,6 +775,9 @@ namespace JakubKazimierskiGame
             health = new HealthFromDifficultyMode(2,0);
             bulletsPlayer = new BulletsFromDifficultyMode(1);
             speedPlayer = new SpeedFromDifficultyMode(4);
+            enemyBullet = new EnemyBulletsFromDifficultyMode(4);
+            speedEnemy = new EnemySpeedFromDifficultyMode(4);
+            amountEnemy = new EnemyAmountFromDifficultyMode(8);
         
             ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
             ReplayButton.Visible = true;
@@ -786,7 +797,9 @@ namespace JakubKazimierskiGame
             health = new HealthFromDifficultyMode(3,1);
             bulletsPlayer = new BulletsFromDifficultyMode(2);
             speedPlayer = new SpeedFromDifficultyMode(6);
-            
+            enemyBullet = new EnemyBulletsFromDifficultyMode(6);
+            speedEnemy = new EnemySpeedFromDifficultyMode(6);
+            amountEnemy = new EnemyAmountFromDifficultyMode(9);
 
             ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
             ReplayButton.Visible = true;
@@ -807,7 +820,10 @@ namespace JakubKazimierskiGame
             health = new HealthFromDifficultyMode(4,2);
             bulletsPlayer = new BulletsFromDifficultyMode(3);
             speedPlayer = new SpeedFromDifficultyMode(8);
-          
+            enemyBullet = new EnemyBulletsFromDifficultyMode(8);
+            speedEnemy = new EnemySpeedFromDifficultyMode(8);
+            amountEnemy = new EnemyAmountFromDifficultyMode(10);
+
             ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
             ReplayButton.Visible = true;
 
@@ -833,45 +849,47 @@ namespace JakubKazimierskiGame
         {
             if(EasyModeFlag == true)
             {
-                enemies[0].Image = enemi1;
-                enemies[1].Image = enemi1;
-                enemies[2].Image = enemi2;
-                enemies[3].Image = enemi2;
-                enemies[4].Image = enemi1;
-                enemies[5].Image = enemi1;
-                enemies[6].Image = enemi2;
-                enemies[7].Image = enemi2;
-                enemies[8].Image = enemi1;
-                enemies[9].Image = enemi1;
+                for (int i = 0; i < amountEnemy.GetAmount(); i++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        enemies[i].Image = enemi1;
+                    }
+                    else
+                    {
+                        enemies[i].Image = enemi2;
+                    }
+                }
                 EasyModeFlag = false;
             }
             if(MediumModeFlag == true)
             {
-                enemies[0].Image = enemi2;
-                enemies[1].Image = enemi2;
-                enemies[2].Image = enemi3;
-                enemies[3].Image = enemi3;
-                enemies[4].Image = enemi2;
-                enemies[5].Image = enemi2;
-                enemies[6].Image = enemi3;
-                enemies[7].Image = enemi3;
-                enemies[8].Image = enemi2;
-                enemies[9].Image = enemi2;
-
+                for (int i = 0; i < amountEnemy.GetAmount(); i++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        enemies[i].Image = enemi2;
+                    }
+                    else
+                    {
+                        enemies[i].Image = enemi3;
+                    }
+                }
                 MediumModeFlag = false;
             }
             if(HardModeFlag == true)
             {
-                enemies[0].Image = boss1;
-                enemies[1].Image = boss1;
-                enemies[2].Image = boss2;
-                enemies[3].Image = boss2;
-                enemies[4].Image = boss1;
-                enemies[5].Image = boss1;
-                enemies[6].Image = boss2;
-                enemies[7].Image = boss2;
-                enemies[8].Image = boss1;
-                enemies[9].Image = boss1;
+                for (int i = 0; i < amountEnemy.GetAmount(); i++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        enemies[i].Image = boss1;
+                    }
+                    else
+                    {
+                        enemies[i].Image = boss2;
+                    }
+                }
                 HardModeFlag = false;
             }
         }

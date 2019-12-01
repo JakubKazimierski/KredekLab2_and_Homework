@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace JakubKazimierskiGame
 {
-    class EnemyFromDifficultyMode : Enemy
+    class EnemyBulletsFromDifficultyMode : EnemyBullets
     {
         
-        public EnemyFromDifficultyMode(int amount)
+        public EnemyBulletsFromDifficultyMode(int amount)
         {
             bullets = amount;
         }

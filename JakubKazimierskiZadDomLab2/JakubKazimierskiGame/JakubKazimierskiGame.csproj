@@ -50,8 +50,12 @@
     <Compile Include="Bullets.cs" />
     <Compile Include="BulletsFromDifficultyMode.cs" />
     <Compile Include="BestScore.cs" />
-    <Compile Include="EnemyFromDifficultyMode.cs" />
-    <Compile Include="Enemy.cs" />
+    <Compile Include="EnemyAmountFromDifficultyMode.cs" />
+    <Compile Include="EnemyAmount.cs" />
+    <Compile Include="EnemySpeedFromDifficultyMode.cs" />
+    <Compile Include="EnemySpeed.cs" />
+    <Compile Include="EnemyBulletsFromDifficultyMode.cs" />
+    <Compile Include="EnemyBullets.cs" />
     <Compile Include="Scores.cs" />
     <Compile Include="SpeedFromDifficultyMode.cs" />
     <Compile Include="Speed.cs" />
