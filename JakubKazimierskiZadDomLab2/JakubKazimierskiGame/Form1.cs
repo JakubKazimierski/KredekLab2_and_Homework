@@ -105,8 +105,7 @@ namespace JakubKazimierskiGame
             {
                 #region creating variables object
                 //assigmnet of values to variables
-                if (background.GetColorBackground() != null && health.GetLifeAmount() != null && health.GetShieldAmount() != null && bulletsPlayer.GetBulletsAmount() != null && speedPlayer.GetSpeedLevel() != null && enemyBullet.GetBullets() != null && speedEnemy.GetSpeed() != null && amountEnemy.GetAmount() != null)
-                {
+                
 
                     MunitionSpeed = 20;
                     difficulty = 9;
@@ -158,12 +157,8 @@ namespace JakubKazimierskiGame
                     LifeLabel.Text = "LIFE: " + health.GetLifeAmount().ToString();
                     ShieldLabel.Text = "SHIELD: " + health.GetShieldAmount().ToString();
                     #endregion
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("Odpalanie");
-            }
+                
+         
             #region Rendering Images loops
             //rendering ammo
             for (int i = 0; i<munitions.Length; i++ )
@@ -253,8 +248,12 @@ namespace JakubKazimierskiGame
             //methods to load pictures of enemies
 
             CreateEnemiesImage();
-            #endregion
-
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Odpalanie");
+            }
         }
         /// <summary>
         /// Method of timer, which is responsible for moving background
