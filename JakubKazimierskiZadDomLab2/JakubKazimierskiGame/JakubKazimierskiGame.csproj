@@ -49,6 +49,10 @@
     <Compile Include="Background.cs" />
     <Compile Include="Bullets.cs" />
     <Compile Include="BulletsFromDifficultyMode.cs" />
+    <Compile Include="BestScore.cs" />
+    <Compile Include="Scores.cs" />
+    <Compile Include="SpeedFromDifficultyMode.cs" />
+    <Compile Include="Speed.cs" />
     <Compile Include="HealthFromDifficultyMode.cs" />
     <Compile Include="Health.cs" />
     <Compile Include="DifficultyModeBackground.cs" />

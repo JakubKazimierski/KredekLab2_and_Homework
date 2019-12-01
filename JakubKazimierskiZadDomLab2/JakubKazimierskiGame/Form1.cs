@@ -28,7 +28,7 @@ namespace JakubKazimierskiGame
 
         PictureBox[] meteors;
 
-        int playerSpeed;
+        
 
         PictureBox[] munitions;
         int MunitionSpeed;
@@ -54,6 +54,9 @@ namespace JakubKazimierskiGame
         private Health health;
 
         private Bullets bulletsPlayer;
+
+        private Speed speedPlayer;
+
         #endregion
 
         public Form1()
@@ -75,7 +78,7 @@ namespace JakubKazimierskiGame
             #region creating variables object
             //assigmnet of values to variables
             
-            playerSpeed = 4;
+        
             MunitionSpeed = 20;
             enemiesSpeed = 4;
             enemiesMunitionSpeed = 4;
@@ -84,7 +87,7 @@ namespace JakubKazimierskiGame
             score = 0;
             money = 0;
             speedLvl = 1;
-            bullets = 1;
+            bullets = 1;//speed of bullets not amount
             pause = false;
             gameIsOver = false;
             rand = new Random();
@@ -277,7 +280,7 @@ namespace JakubKazimierskiGame
             if ( Player.Left > 10)
             {
 
-                Player.Left -= playerSpeed;
+                Player.Left -= speedPlayer.GetSpeedLevel();
             }
         }
 
@@ -291,7 +294,7 @@ namespace JakubKazimierskiGame
             if (Player.Right < 630)
             {
 
-                Player.Left += playerSpeed;
+                Player.Left += speedPlayer.GetSpeedLevel();
             }
         }
 
@@ -751,6 +754,7 @@ namespace JakubKazimierskiGame
             background = new DifficultyModeBackground("Black", 4);
             health = new HealthFromDifficultyMode(2,0);
             bulletsPlayer = new BulletsFromDifficultyMode(1);
+            speedPlayer = new SpeedFromDifficultyMode(4);
             ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
             ReplayButton.Visible = true;
 
@@ -767,6 +771,7 @@ namespace JakubKazimierskiGame
             background = new DifficultyModeBackground("DarkBlue", 7);
             health = new HealthFromDifficultyMode(3,1);
             bulletsPlayer = new BulletsFromDifficultyMode(2);
+            speedPlayer = new SpeedFromDifficultyMode(6);
             ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
             ReplayButton.Visible = true;
 
@@ -784,6 +789,7 @@ namespace JakubKazimierskiGame
             background = new DifficultyModeBackground("MidnightBlue", 9);
             health = new HealthFromDifficultyMode(4,2);
             bulletsPlayer = new BulletsFromDifficultyMode(3);
+            speedPlayer = new SpeedFromDifficultyMode(8);
             ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
             ReplayButton.Visible = true;
 
