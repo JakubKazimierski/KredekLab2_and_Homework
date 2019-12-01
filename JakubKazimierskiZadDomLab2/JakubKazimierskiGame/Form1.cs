@@ -51,6 +51,8 @@ namespace JakubKazimierskiGame
 
         private Background background;
 
+        private Health health;
+
         #endregion
 
         public Form1()
@@ -99,10 +101,13 @@ namespace JakubKazimierskiGame
 
             enemiesMunitions = new PictureBox[10];
 
-           
+           //thanks to initialization below background speed and color depends from difficulty mode
             this.BackColor = Color.FromName(background.GetColorBackground());
             backgroundSpeed = background.GetObstaclesBackground();
 
+
+            LifeLabel.Text = "LIFE: " + health.GetLifeAmount().ToString();
+            ShieldLabel.Text = "SHIELD: " + health.GetShieldAmount().ToString();
             #endregion
 
             #region Rendering Images loops
@@ -143,7 +148,7 @@ namespace JakubKazimierskiGame
 
             }
 
-            //adding meteors to background
+            //rendering meteors at background, meteors are enemies of player
             for (int i = 0; i < meteors.Length; i++)
             {
 
@@ -567,8 +572,6 @@ namespace JakubKazimierskiGame
         private void StartTimers()
         {
             MoveBackground.Start();
-            RightTimer.Start();
-            LeftTimer.Start();
             MoveEnemiesTimer.Start();
             MunitionTimer.Start();
             EnemiesMunitionTimer.Start();
@@ -662,7 +665,7 @@ namespace JakubKazimierskiGame
         {
             Off_Radio_Buttons();
             background = new DifficultyModeBackground("Black", 4);
-           
+            health = new HealthFromDifficultyMode(2,0);
             ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
             ReplayButton.Visible = true;
 
@@ -677,7 +680,7 @@ namespace JakubKazimierskiGame
         {
             Off_Radio_Buttons();
             background = new DifficultyModeBackground("DarkBlue", 7);
-           
+            health = new HealthFromDifficultyMode(3,1);
             ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
             ReplayButton.Visible = true;
 
@@ -693,7 +696,8 @@ namespace JakubKazimierskiGame
         {   
             Off_Radio_Buttons();
             background = new DifficultyModeBackground("MidnightBlue", 9);
-           
+            health = new HealthFromDifficultyMode(4,2);
+            
             ReplayButton.Location = new Point(this.Width / 2 - 120, 250);
             ReplayButton.Visible = true;
 

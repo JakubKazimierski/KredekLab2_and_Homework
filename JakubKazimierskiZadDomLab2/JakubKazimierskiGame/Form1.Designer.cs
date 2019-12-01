@@ -46,10 +46,12 @@
             this.BulletsLabel = new System.Windows.Forms.Label();
             this.SpeedLvlLabel = new System.Windows.Forms.Label();
             this.GroupBoxMenu = new System.Windows.Forms.GroupBox();
-            this.DifficultyLabel = new System.Windows.Forms.Label();
-            this.EasyModeRadioButton = new System.Windows.Forms.RadioButton();
-            this.MediumModeRadioButton = new System.Windows.Forms.RadioButton();
             this.HardModeRadioButton = new System.Windows.Forms.RadioButton();
+            this.MediumModeRadioButton = new System.Windows.Forms.RadioButton();
+            this.EasyModeRadioButton = new System.Windows.Forms.RadioButton();
+            this.DifficultyLabel = new System.Windows.Forms.Label();
+            this.LifeLabel = new System.Windows.Forms.Label();
+            this.ShieldLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Player)).BeginInit();
             this.GroupBoxMenu.SuspendLayout();
             this.SuspendLayout();
@@ -193,6 +195,8 @@
             // 
             // GroupBoxMenu
             // 
+            this.GroupBoxMenu.Controls.Add(this.ShieldLabel);
+            this.GroupBoxMenu.Controls.Add(this.LifeLabel);
             this.GroupBoxMenu.Controls.Add(this.HardModeRadioButton);
             this.GroupBoxMenu.Controls.Add(this.MediumModeRadioButton);
             this.GroupBoxMenu.Controls.Add(this.EasyModeRadioButton);
@@ -211,29 +215,20 @@
             this.GroupBoxMenu.TabStop = false;
             this.GroupBoxMenu.Text = "OptionsMenu";
             // 
-            // DifficultyLabel
+            // HardModeRadioButton
             // 
-            this.DifficultyLabel.Location = new System.Drawing.Point(6, 242);
-            this.DifficultyLabel.Name = "DifficultyLabel";
-            this.DifficultyLabel.Size = new System.Drawing.Size(124, 27);
-            this.DifficultyLabel.TabIndex = 9;
-            this.DifficultyLabel.Text = "DifficulyMode";
-            this.DifficultyLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // EasyModeRadioButton
-            // 
-            this.EasyModeRadioButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.EasyModeRadioButton.AllowDrop = true;
-            this.EasyModeRadioButton.AutoEllipsis = true;
-            this.EasyModeRadioButton.AutoSize = true;
-            this.EasyModeRadioButton.Location = new System.Drawing.Point(17, 299);
-            this.EasyModeRadioButton.Name = "EasyModeRadioButton";
-            this.EasyModeRadioButton.Size = new System.Drawing.Size(48, 18);
-            this.EasyModeRadioButton.TabIndex = 10;
-            this.EasyModeRadioButton.Text = "Easy";
-            this.EasyModeRadioButton.UseCompatibleTextRendering = true;
-            this.EasyModeRadioButton.UseVisualStyleBackColor = true;
-            this.EasyModeRadioButton.Click += new System.EventHandler(this.EasyModeRadioButton_Click);
+            this.HardModeRadioButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.HardModeRadioButton.AllowDrop = true;
+            this.HardModeRadioButton.AutoCheck = false;
+            this.HardModeRadioButton.AutoSize = true;
+            this.HardModeRadioButton.Location = new System.Drawing.Point(17, 456);
+            this.HardModeRadioButton.Name = "HardModeRadioButton";
+            this.HardModeRadioButton.Size = new System.Drawing.Size(48, 18);
+            this.HardModeRadioButton.TabIndex = 12;
+            this.HardModeRadioButton.Text = "Hard";
+            this.HardModeRadioButton.UseCompatibleTextRendering = true;
+            this.HardModeRadioButton.UseVisualStyleBackColor = true;
+            this.HardModeRadioButton.Click += new System.EventHandler(this.HardModeRadioButton_Click);
             // 
             // MediumModeRadioButton
             // 
@@ -241,7 +236,7 @@
             this.MediumModeRadioButton.AllowDrop = true;
             this.MediumModeRadioButton.AutoCheck = false;
             this.MediumModeRadioButton.AutoSize = true;
-            this.MediumModeRadioButton.Location = new System.Drawing.Point(17, 334);
+            this.MediumModeRadioButton.Location = new System.Drawing.Point(17, 423);
             this.MediumModeRadioButton.Name = "MediumModeRadioButton";
             this.MediumModeRadioButton.Size = new System.Drawing.Size(64, 18);
             this.MediumModeRadioButton.TabIndex = 11;
@@ -250,20 +245,52 @@
             this.MediumModeRadioButton.UseVisualStyleBackColor = true;
             this.MediumModeRadioButton.Click += new System.EventHandler(this.MediumModeRadioButton_Click);
             // 
-            // HardModeRadioButton
+            // EasyModeRadioButton
             // 
-            this.HardModeRadioButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.HardModeRadioButton.AllowDrop = true;
-            this.HardModeRadioButton.AutoCheck = false;
-            this.HardModeRadioButton.AutoSize = true;
-            this.HardModeRadioButton.Location = new System.Drawing.Point(17, 370);
-            this.HardModeRadioButton.Name = "HardModeRadioButton";
-            this.HardModeRadioButton.Size = new System.Drawing.Size(48, 18);
-            this.HardModeRadioButton.TabIndex = 12;
-            this.HardModeRadioButton.Text = "Hard";
-            this.HardModeRadioButton.UseCompatibleTextRendering = true;
-            this.HardModeRadioButton.UseVisualStyleBackColor = true;
-            this.HardModeRadioButton.Click += new System.EventHandler(this.HardModeRadioButton_Click);
+            this.EasyModeRadioButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.EasyModeRadioButton.AllowDrop = true;
+            this.EasyModeRadioButton.AutoSize = true;
+            this.EasyModeRadioButton.Location = new System.Drawing.Point(17, 386);
+            this.EasyModeRadioButton.Name = "EasyModeRadioButton";
+            this.EasyModeRadioButton.Size = new System.Drawing.Size(48, 18);
+            this.EasyModeRadioButton.TabIndex = 10;
+            this.EasyModeRadioButton.Text = "Easy";
+            this.EasyModeRadioButton.UseCompatibleTextRendering = true;
+            this.EasyModeRadioButton.UseVisualStyleBackColor = true;
+            this.EasyModeRadioButton.Click += new System.EventHandler(this.EasyModeRadioButton_Click);
+            // 
+            // DifficultyLabel
+            // 
+            this.DifficultyLabel.Location = new System.Drawing.Point(14, 346);
+            this.DifficultyLabel.Name = "DifficultyLabel";
+            this.DifficultyLabel.Size = new System.Drawing.Size(124, 27);
+            this.DifficultyLabel.TabIndex = 9;
+            this.DifficultyLabel.Text = "DifficulyMode";
+            this.DifficultyLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LifeLabel
+            // 
+            this.LifeLabel.BackColor = System.Drawing.Color.Transparent;
+            this.LifeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.LifeLabel.ForeColor = System.Drawing.Color.Silver;
+            this.LifeLabel.Location = new System.Drawing.Point(8, 242);
+            this.LifeLabel.Name = "LifeLabel";
+            this.LifeLabel.Size = new System.Drawing.Size(94, 23);
+            this.LifeLabel.TabIndex = 13;
+            this.LifeLabel.Text = "LIFE:";
+            this.LifeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // ShieldLabel
+            // 
+            this.ShieldLabel.BackColor = System.Drawing.Color.Transparent;
+            this.ShieldLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.ShieldLabel.ForeColor = System.Drawing.Color.Silver;
+            this.ShieldLabel.Location = new System.Drawing.Point(8, 277);
+            this.ShieldLabel.Name = "ShieldLabel";
+            this.ShieldLabel.Size = new System.Drawing.Size(94, 23);
+            this.ShieldLabel.TabIndex = 14;
+            this.ShieldLabel.Text = "SHIELD:";
+            this.ShieldLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Form1
             // 
@@ -313,6 +340,8 @@
         private System.Windows.Forms.RadioButton MediumModeRadioButton;
         private System.Windows.Forms.RadioButton EasyModeRadioButton;
         private System.Windows.Forms.Label DifficultyLabel;
+        private System.Windows.Forms.Label ShieldLabel;
+        private System.Windows.Forms.Label LifeLabel;
     }
 }
 
