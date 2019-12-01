@@ -34,7 +34,7 @@ namespace JakubKazimierskiGame
         PictureBox[] munitions;
         int MunitionSpeed;
 
-        PictureBox[] enemies;// = new PictureBox[10];
+        PictureBox[] enemies;
         
 
 
@@ -99,9 +99,7 @@ namespace JakubKazimierskiGame
             //assigmnet of values to variables
             
         
-            MunitionSpeed = 20;
-        
-            
+            MunitionSpeed = 20;            
             difficulty = 9;
             level = 1;
             score = 0;
@@ -121,7 +119,7 @@ namespace JakubKazimierskiGame
             
             munitions = new PictureBox[bulletsPlayer.GetBulletsAmount()];
 
-            // enemies = new PictureBox[10];
+            
 
             enemies = new PictureBox[amountEnemy.GetAmount()];
 
@@ -224,28 +222,6 @@ namespace JakubKazimierskiGame
             #region Images of enemies
             //methods to load pictures of enemies
 
-
-            // Image enemi1 = Image.FromFile(@"images\\E1.png");
-            /*
-             Image enemi1 = JakubKazimierskiGame.Properties.Resources.E1;
-             Image enemi2 = JakubKazimierskiGame.Properties.Resources.E2;
-             Image enemi3 = JakubKazimierskiGame.Properties.Resources.E3___Kopia;
-
-             Image boss1 = JakubKazimierskiGame.Properties.Resources.Boss1;
-             Image boss2 = JakubKazimierskiGame.Properties.Resources.Boss2;
-             */
-            //create enemies img
-            /* enemies[0].Image = boss1;
-             enemies[1].Image = enemi3;
-             enemies[2].Image = enemi2;
-             enemies[3].Image = enemi3;
-             enemies[4].Image = enemi1;
-             enemies[5].Image = enemi1;
-             enemies[6].Image = enemi3;
-             enemies[7].Image = enemi3;
-             enemies[8].Image = enemi2;
-             enemies[9].Image = boss2;
-             */
             CreateEnemiesImage();
             #endregion
 
@@ -374,6 +350,7 @@ namespace JakubKazimierskiGame
         {
             RightTimer.Stop();
             LeftTimer.Stop();
+            //if for preventing null exception
             if (EasyModeRadioButton.Enabled == false && MediumModeRadioButton.Enabled == false && HardModeRadioButton.Enabled == false)
             {
                 //pause the game
@@ -575,7 +552,7 @@ namespace JakubKazimierskiGame
                 
 
             }
-        
+        //loop for meeors
             for(int i = 0; i < meteors.Length; i++)
             {
 
@@ -640,13 +617,7 @@ namespace JakubKazimierskiGame
 
             ON_Radio_Buttons();
         }
-        private void GameAfterShoot()
-        {
-            
-
-            StopTimers();
-            StartTimers();
-        }
+        
         /// <summary>
         /// stop timers method, timers are responsible for rendering graphic
         /// </summary>
@@ -741,7 +712,60 @@ namespace JakubKazimierskiGame
         #endregion
 
         #region Buttons methods
-        
+
+
+        /// <summary>
+        /// Method to operate event of Button Best scores, it's output is score form last few games
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ScoresButton_Click(object sender, EventArgs e)
+        {
+
+            List<string> scoresHierarchy = new List<string>();
+            //MessageBox.Show(JakubKazimierskiGame.Properties.Resources.ScoresFile);
+            //MessageBox.Show(ScoresList[0].ToString());
+            StreamWriter writer = new StreamWriter(@"ScoresFile.txt");
+
+            for (int i = 0; i < ScoresList.Count; i++)
+            {
+
+                writer.WriteLine(ScoresList[i].ToString());
+            }
+
+
+            writer.Close();
+
+
+            int hierarchy = 1;
+            StreamReader reader = new StreamReader(@"ScoresFile.txt");
+
+            while (!reader.EndOfStream)
+            {
+                scoresHierarchy.Add(hierarchy.ToString() + " : " + reader.ReadLine());
+                hierarchy++;
+            }
+            reader.Close();
+
+            StreamWriter writerForFinalyScores = new StreamWriter(@"ScoresFile.txt");
+
+            for (int i = 0; i < scoresHierarchy.Count; i++)
+            {
+
+                writerForFinalyScores.WriteLine(scoresHierarchy[i].ToString());
+            }
+
+            writerForFinalyScores.Close();
+
+            string textScores = System.IO.File.ReadAllText(@"ScoresFile.txt");
+
+            MessageBox.Show(textScores);
+
+
+
+        }
+
+
         /// <summary>
         /// method responsible for using replay button, program didn't render proper name, 
         /// </summary>
@@ -778,7 +802,7 @@ namespace JakubKazimierskiGame
         }
         #endregion
 
-        #region BackroundModeMethods
+        #region BackroundModeMethodsOfRadioButons
         
         /// <summary>
         /// Method to enable easy mode background and game itself
@@ -847,6 +871,9 @@ namespace JakubKazimierskiGame
 
         }
 
+        /// <summary>
+        /// Mehod to disable radio buttons
+        /// </summary>
         public void Off_Radio_Buttons()
         {
             EasyModeRadioButton.Enabled = false;
@@ -854,6 +881,9 @@ namespace JakubKazimierskiGame
             HardModeRadioButton.Enabled = false;
             
         }
+        /// <summary>
+        /// method to enable radio buttons
+        /// </summary>
         public void ON_Radio_Buttons()
         {
             EasyModeRadioButton.Enabled = true;
@@ -863,7 +893,12 @@ namespace JakubKazimierskiGame
         }
         #endregion
 
-       public void CreateEnemiesImage()
+        #region HelperMethodOfCreatingImages
+
+        /// <summary>
+        /// Method to order which enemy has which image
+        /// </summary>
+        public void CreateEnemiesImage()
         {
             if(EasyModeFlag == true)
             {
@@ -911,52 +946,7 @@ namespace JakubKazimierskiGame
                 HardModeFlag = false;
             }
         }
-
-        private void ScoresButton_Click(object sender, EventArgs e)
-        {
-
-            List<string> scoresHierarchy = new List<string>();
-            //MessageBox.Show(JakubKazimierskiGame.Properties.Resources.ScoresFile);
-            //MessageBox.Show(ScoresList[0].ToString());
-            StreamWriter writer = new StreamWriter(@"ScoresFile.txt");
-
-            for (int i = 0; i < ScoresList.Count; i++)
-            {
-
-                writer.WriteLine(ScoresList[i].ToString());
-            }
-
-
-            writer.Close();
-
-
-            int hierarchy = 1;
-            StreamReader reader = new StreamReader(@"ScoresFile.txt");
-
-            while (!reader.EndOfStream)
-            {
-                scoresHierarchy.Add(hierarchy.ToString() +" : " + reader.ReadLine());
-                hierarchy++;
-            }
-            reader.Close();
-
-            StreamWriter writerForFinalyScores = new StreamWriter(@"ScoresFile.txt");
-
-            for (int i = 0; i < scoresHierarchy.Count; i++)
-            {
-
-                writerForFinalyScores.WriteLine(scoresHierarchy[i].ToString());
-            }
-
-            writerForFinalyScores.Close();
-
-            string textScores = System.IO.File.ReadAllText(@"ScoresFile.txt");
-
-            MessageBox.Show(textScores);
-
-
-
-        }
+        #endregion
 
 
 

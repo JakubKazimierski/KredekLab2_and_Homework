@@ -5,4 +5,4 @@ is to shoot as many spaceships as possible to get high score,
 and thanks to that higher level, which is more difficult than 
 previous one. Also thanks to high score you will get money,
 for special amount of money your speed is improved, and also 
-with more amount of money, your shooting is improved. Game contains 10 levels. Also now You are able to choose 3 different level of difficulty, on each level are different enemies with different skills. You can check your HighScore, after game, clicking on button BestScores. Good luck.
+with more amount of money, your shooting is improved. Game contains 10 levels. Also now You are able to choose 3 different level of difficulty, on each level are different enemies with different skills. You can check your HighScore, after game, clicking on button BestScores.Zou have to be also carefull not to hit meteors. Good luck.
