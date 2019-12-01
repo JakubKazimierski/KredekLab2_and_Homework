@@ -101,61 +101,68 @@ namespace JakubKazimierskiGame
         /// <param name="e">The event object</param>
         private void Form1_Load(object sender, EventArgs e)
         {
-            #region creating variables object
-            //assigmnet of values to variables
-            if (background.GetColorBackground() != null && health.GetLifeAmount() != null && health.GetShieldAmount() != null && bulletsPlayer.GetBulletsAmount() != null && speedPlayer.GetSpeedLevel() != null && enemyBullet.GetBullets() != null && speedEnemy.GetSpeed() != null && amountEnemy.GetAmount() != null)
+            try
             {
+                #region creating variables object
+                //assigmnet of values to variables
+                if (background.GetColorBackground() != null && health.GetLifeAmount() != null && health.GetShieldAmount() != null && bulletsPlayer.GetBulletsAmount() != null && speedPlayer.GetSpeedLevel() != null && enemyBullet.GetBullets() != null && speedEnemy.GetSpeed() != null && amountEnemy.GetAmount() != null)
+                {
 
-                MunitionSpeed = 20;
-                difficulty = 9;
-                level = 1;
-                score = 0;
-                money = 0;
-                speedLvl = 1;
-                bullets = 1;//speed of bullets not amount
-                pause = false;
-                gameIsOver = false;
-                rand = new Random();
-                #endregion
+                    MunitionSpeed = 20;
+                    difficulty = 9;
+                    level = 1;
+                    score = 0;
+                    money = 0;
+                    speedLvl = 1;
+                    bullets = 1;//speed of bullets not amount
+                    pause = false;
+                    gameIsOver = false;
+                    rand = new Random();
+                    #endregion
 
-                #region Creating picture  objects
+                    #region Creating picture  objects
 
-                stars = new PictureBox[15];
+                    stars = new PictureBox[15];
 
-                meteors = new PictureBox[6];
+                    meteors = new PictureBox[6];
 
-                munitions = new PictureBox[bulletsPlayer.GetBulletsAmount()];
+                    munitions = new PictureBox[bulletsPlayer.GetBulletsAmount()];
 
 
 
-                enemies = new PictureBox[amountEnemy.GetAmount()];
+                    enemies = new PictureBox[amountEnemy.GetAmount()];
 
-                enemiesMunitions = new PictureBox[amountEnemy.GetAmount()];
+                    enemiesMunitions = new PictureBox[amountEnemy.GetAmount()];
 
-                //thanks to initialization below background speed and color depends from difficulty mode
-                this.BackColor = Color.FromName(background.GetColorBackground());
-                backgroundSpeed = background.GetObstaclesBackground();
+                    //thanks to initialization below background speed and color depends from difficulty mode
+                    this.BackColor = Color.FromName(background.GetColorBackground());
+                    backgroundSpeed = background.GetObstaclesBackground();
 
-                //create object of sound
-                gameMedia = new WindowsMediaPlayer();
-                shootMedia = new WindowsMediaPlayer();
-                boom = new WindowsMediaPlayer();
+                    //create object of sound
+                    gameMedia = new WindowsMediaPlayer();
+                    shootMedia = new WindowsMediaPlayer();
+                    boom = new WindowsMediaPlayer();
 
-                gameMedia.URL = @"GameSong.mp3";
-                shootMedia.URL = @"shoot.mp3";
-                boom.URL = @"boom.mp3";
+                    gameMedia.URL = @"GameSong.mp3";
+                    shootMedia.URL = @"shoot.mp3";
+                    boom.URL = @"boom.mp3";
 
-                gameMedia.settings.setMode("loop", true);
-                gameMedia.settings.volume = 5;
-                shootMedia.settings.volume = 1;
-                boom.settings.volume = 6;
+                    gameMedia.settings.setMode("loop", true);
+                    gameMedia.settings.volume = 5;
+                    shootMedia.settings.volume = 1;
+                    boom.settings.volume = 6;
 
-                //start music
-                gameMedia.controls.play();
+                    //start music
+                    gameMedia.controls.play();
 
-                LifeLabel.Text = "LIFE: " + health.GetLifeAmount().ToString();
-                ShieldLabel.Text = "SHIELD: " + health.GetShieldAmount().ToString();
-                #endregion
+                    LifeLabel.Text = "LIFE: " + health.GetLifeAmount().ToString();
+                    ShieldLabel.Text = "SHIELD: " + health.GetShieldAmount().ToString();
+                    #endregion
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Odpalanie");
             }
             #region Rendering Images loops
             //rendering ammo
