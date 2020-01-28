@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JakubKazimierskiGame
 {
-    class EnemyAmountFromDifficultyMode : EnemyAmount
+  public  class EnemyAmountFromDifficultyMode : EnemyAmount
     {
         /// <summary>
         /// Constructor of class

@@ -9,7 +9,7 @@ namespace JakubKazimierskiGame
     /// <summary>
     /// Abstract class
     /// </summary>
-    abstract class Speed
+ public  abstract class Speed
     {
         protected int speedLevel;
 

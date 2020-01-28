@@ -9,7 +9,7 @@ namespace JakubKazimierskiGame
 {   /// <summary>
     ///Abstract class 
     /// </summary>
-  abstract class Background
+  public abstract class Background
     {
         protected string colorBackground;
         protected int obstaclesBackground;

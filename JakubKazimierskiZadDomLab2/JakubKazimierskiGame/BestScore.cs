@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JakubKazimierskiGame
 {
-    class BestScore : Scores
+   public class BestScore : Scores
     {
         /// <summary>
         /// Constructor of class

@@ -9,7 +9,7 @@ namespace JakubKazimierskiGame
     /// <summary>
     /// Abstract class
     /// </summary>
-    abstract class Health
+   public abstract class Health
     {
         protected int lifeAmount;
         protected int shieldAmount;

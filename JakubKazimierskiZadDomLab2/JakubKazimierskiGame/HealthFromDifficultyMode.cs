@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JakubKazimierskiGame
 {
-    class HealthFromDifficultyMode : Health
+  public  class HealthFromDifficultyMode : Health
     {
         
         /// <summary>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JakubKazimierskiGame
 {
-    class EnemySpeedFromDifficultyMode : EnemySpeed
+  public  class EnemySpeedFromDifficultyMode : EnemySpeed
     {
         /// <summary>
         /// Connstructor of class

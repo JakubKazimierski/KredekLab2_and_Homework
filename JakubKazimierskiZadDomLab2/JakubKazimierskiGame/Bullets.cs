@@ -9,7 +9,7 @@ namespace JakubKazimierskiGame
     /// <summary>
     /// Abstract class
     /// </summary>
-    abstract class Bullets
+    public abstract class Bullets
     {
         protected int amountBullets;
 

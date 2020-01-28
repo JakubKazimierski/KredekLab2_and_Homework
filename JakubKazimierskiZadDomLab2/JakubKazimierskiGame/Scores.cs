@@ -9,7 +9,7 @@ namespace JakubKazimierskiGame
     /// <summary>
     /// Abstract class scores
     /// </summary>
-   abstract class Scores
+  public abstract class Scores
     {
         
         protected int score;

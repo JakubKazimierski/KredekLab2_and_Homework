@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JakubKazimierskiGame
 {
-    class DifficultyModeBackground : Background
+  public class DifficultyModeBackground : Background
     {
         /// <summary>
         /// Constructor of class
